@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FFFFFF">
+<title>Statistiques · Lueur</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%23C8102E%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+/* Tableau de bord interne : même univers que la boutique, lu d'un coup d'œil sur téléphone. */
+:root {
+  --paper: #FFFFFF; --mist: #F4F4F2; --line: #E2E2DE; --ink: #141414; --graphite: #5F5F5C;
+  --bar: #BDBDB8; --led: #C8102E; --good: #1F7A4D;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 16px/1.5 var(--font); -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { background: var(--paper); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding-block: 14px; }
+.logo { font-weight: 800; font-stretch: 75%; font-size: 1.4rem; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: inherit; }
+.logo i { width: 9px; height: 9px; border-radius: 50%; background: var(--led); }
+.logo span { font-weight: 500; font-stretch: 100%; font-size: 0.95rem; color: var(--graphite); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+button, .btn { font: inherit; font-weight: 600; font-size: 0.95rem; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+button.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+main .wrap { padding-block: 22px 56px; display: grid; gap: 16px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 20px; min-width: 0; }
+.card h2 { margin: 0 0 4px; font-weight: 800; font-stretch: 80%; font-size: 1.25rem; }
+.hint { margin: 0 0 14px; color: var(--graphite); font-size: 0.92rem; }
+.login { max-width: 440px; margin: 40px auto; display: grid; gap: 12px; }
+.login input { font: inherit; min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line); }
+.err { color: var(--led); font-weight: 600; margin: 0; }
+.periodes { display: inline-flex; flex-wrap: wrap; gap: 4px; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 4px; justify-self: start; }
+.periodes button { border: 0; min-height: 38px; background: none; color: var(--graphite); }
+.periodes button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.tile { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; gap: 2px; }
+.tile b { font-weight: 800; font-stretch: 80%; font-size: 2rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.tile span { font-size: 0.88rem; color: var(--graphite); }
+.tile.main { border-color: var(--ink); }
+.tile.main b { color: var(--led); }
+.chart svg { display: block; width: 100%; height: auto; }
+.funnel { display: grid; gap: 10px; }
+.fstep { display: grid; grid-template-columns: minmax(110px, 160px) minmax(0, 1fr) 92px; gap: 10px; align-items: center; font-size: 0.95rem; }
+.fbar { height: 26px; background: var(--mist); border-radius: 8px; overflow: hidden; }
+.fbar i { display: block; height: 100%; background: var(--ink); border-radius: 8px; min-width: 2px; }
+.fstep:last-child .fbar i { background: var(--led); }
+.fstep .n { text-align: right; font-variant-numeric: tabular-nums; }
+.fstep .n small { display: block; color: var(--graphite); font-size: 0.8rem; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 10px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--graphite); font-weight: 600; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.liste li { display: flex; justify-content: space-between; gap: 12px; font-variant-numeric: tabular-nums; }
+.liste li span:first-child { color: var(--graphite); }
+.liens { display: grid; gap: 8px; }
+.lien { display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.lien code { font-size: 0.85rem; background: var(--mist); padding: 8px 10px; border-radius: 8px; overflow-wrap: anywhere; user-select: all; }
+.vide { color: var(--graphite); }
+.note { font-size: 0.85rem; color: var(--graphite); margin: 0; }
+@media (max-width: 520px) { .lien { grid-template-columns: minmax(0, 1fr) auto; } .lien b { grid-column: 1 / -1; } .fstep { grid-template-columns: 1fr 76px; } .fstep .fbar { grid-column: 1 / -1; grid-row: 2; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html"><i aria-hidden="true"></i>Lueur <span>Statistiques</span></a>
+    <div class="actions" data-actions hidden>
+      <button type="button" data-refresh>Actualiser</button>
+      <button type="button" data-logout>Se déconnecter</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <form class="card login" data-login hidden>
+      <h2>Tableau de bord</h2>
+      <p class="hint">Entre le code des statistiques (celui réglé dans Netlify, variable STATS_CODE). Il reste enregistré sur cet appareil.</p>
+      <label for="code" class="hint" style="margin:0">Code</label>
+      <input id="code" type="password" autocomplete="current-password" required>
+      <p class="err" data-login-err role="alert" hidden></p>
+      <button class="primary" type="submit">Voir les statistiques</button>
+    </form>
+
+    <section data-dash hidden style="display:grid;gap:16px">
+      <div class="periodes" role="group" aria-label="Période">
+        <button type="button" data-p="1">Aujourd'hui</button>
+        <button type="button" data-p="7" aria-pressed="true">7 jours</button>
+        <button type="button" data-p="30">30 jours</button>
+        <button type="button" data-p="90">90 jours</button>
+      </div>
+
+      <div class="tiles" data-tiles></div>
+
+      <div class="card chart">
+        <h2 data-chart-title>Visites par jour</h2>
+        <p class="hint" data-chart-hint></p>
+        <div data-chart></div>
+      </div>
+
+      <div class="card">
+        <h2>Du visiteur à l'acheteur</h2>
+        <p class="hint">Sur 100 visites, combien vont jusqu'au bout.</p>
+        <div class="funnel" data-funnel></div>
+      </div>
+
+      <div class="card">
+        <h2>D'où viennent les visiteurs</h2>
+        <p class="hint">Ajoute ?utm_source=tiktok à ton lien (voir plus bas) pour que TikTok soit bien reconnu.</p>
+        <div class="tbl"><table><thead><tr><th>Source</th><th>Visites</th><th>Paniers</th><th>Payer</th><th>Achats</th><th>Taux d'achat</th></tr></thead><tbody data-sources></tbody></table></div>
+      </div>
+
+      <div class="grid3">
+        <div class="card"><h2>Appareils</h2><ul class="liste" data-appareils></ul></div>
+        <div class="card"><h2>Pays</h2><ul class="liste" data-pays></ul></div>
+        <div class="card"><h2>Vidéos (campagnes)</h2><p class="hint">Avec ?utm_campaign=nom-de-la-video</p><ul class="liste" data-campagnes></ul></div>
+      </div>
+
+      <div class="card">
+        <h2>Liens à mettre dans tes bios</h2>
+        <p class="hint">Chaque réseau a son lien : tu sauras lequel ramène des clients.</p>
+        <div class="liens" data-liens></div>
+      </div>
+
+      <p class="note">Les achats comptés ici sont les retours sur la page « merci » après le paiement. Le chiffre officiel reste celui de Stripe. Mis à jour : <span data-maj></span>.</p>
+    </section>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (s) { return document.querySelector(s); };
+  var NOMS = { view: "Visites", add_to_cart: "Ajouts au panier", checkout: "Clics « Payer »", purchase: "Achats", waitlist: "Inscriptions liste d'attente", color: "Ont testé les couleurs" };
+  var code = ""; try { code = localStorage.getItem("lueur_stats_code") || ""; } catch (e) {}
+  var donnees = null, periode = 7;
+
+  function nombre(n) { return (n || 0).toLocaleString("fr-FR"); }
+  function pct(a, b) { return b ? (a / b * 100).toLocaleString("fr-FR", { maximumFractionDigits: 1 }) + " %" : "–"; }
+  function jourCourt(iso) { var p = iso.split("-"); return Number(p[2]) + " " + ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."].at(Number(p[1]) - 1); }
+  function el(tag, attrs, txt) { var e = document.createElement(tag); if (attrs) Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); }); if (txt != null) e.textContent = txt; return e; }
+
+  function montrer(connecte) {
+    $("[data-login]").hidden = connecte; $("[data-dash]").hidden = !connecte; $("[data-actions]").hidden = !connecte;
+  }
+
+  function charger() {
+    return fetch("/api/stats?jours=90", { headers: { "x-code-stats": code }, cache: "no-store" })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.d && res.d.erreur ? res.d.erreur : "Impossible de lire les statistiques.");
+        donnees = res.d; montrer(true); dessiner();
+      });
+  }
+
+  function somme(jours) {
+    var t = { ev: {}, sources: {}, campagnes: {}, pays: {}, appareils: {}, heures: Array(24).fill(0) };
+    jours.forEach(function (j) {
+      Object.keys(j.evenements || {}).forEach(function (k) { t.ev[k] = (t.ev[k] || 0) + j.evenements[k]; });
+      ["sources", "campagnes"].forEach(function (g) {
+        Object.keys(j[g] || {}).forEach(function (s) {
+          t[g][s] = t[g][s] || {};
+          Object.keys(j[g][s]).forEach(function (k) { t[g][s][k] = (t[g][s][k] || 0) + j[g][s][k]; });
+        });
+      });
+      ["pays", "appareils"].forEach(function (g) { Object.keys(j[g] || {}).forEach(function (k) { t[g][k] = (t[g][k] || 0) + j[g][k]; }); });
+      (j.heures || []).forEach(function (n, h) { t.heures[h] += n || 0; });
+    });
+    return t;
+  }
+
+  function graphique(points, etiquette, largeur) {
+    var W = Math.max(320, Math.min(1000, Math.round(largeur || 760))), H = 260, g = 40, d = 16, h0 = 24, bas = 214, max = Math.max(1, Math.max.apply(null, points.map(function (p) { return p.v; })));
+    var pas = (W - g - d) / points.length, larg = Math.max(2, Math.min(28, pas * 0.6));
+    var ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("role", "img"); svg.setAttribute("aria-label", etiquette);
+    function n(tag, a, txt) { var e = document.createElementNS(ns, tag); Object.keys(a).forEach(function (k) { e.setAttribute(k, a[k]); }); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+    [0, 0.5, 1].forEach(function (f) {
+      var y = bas - f * (bas - h0); n("line", { x1: g, x2: W - d, y1: y, y2: y, stroke: "#E2E2DE" });
+      n("text", { x: g - 8, y: y + 4, "text-anchor": "end", "font-size": 12, fill: "#5F5F5C" }, nombre(Math.round(max * f)));
+    });
+    var tous = Math.max(1, Math.ceil(points.length / Math.max(3, Math.floor((W - g - d) / 70))));
+    points.forEach(function (p, i) {
+      var x = g + i * pas + (pas - larg) / 2, hgt = (p.v / max) * (bas - h0);
+      var r = n("rect", { x: x, y: bas - hgt, width: larg, height: Math.max(hgt, p.v ? 2 : 0), rx: 3, fill: p.a ? "#141414" : "#BDBDB8" });
+      var t = document.createElementNS(ns, "title"); t.textContent = p.l + " : " + nombre(p.v) + " visite" + (p.v > 1 ? "s" : "") + (p.a ? ", " + p.a + " achat" + (p.a > 1 ? "s" : "") : ""); r.appendChild(t);
+      if (p.a) n("circle", { cx: x + larg / 2, cy: bas - hgt - 9, r: 5, fill: "#C8102E" });
+      if ((points.length - 1 - i) % tous === 0) n("text", { x: x + larg / 2, y: bas + 20, "text-anchor": "middle", "font-size": 12, fill: "#5F5F5C" }, p.l);
+    });
+    n("line", { x1: g, x2: W - d, y1: bas, y2: bas, stroke: "#BDBDB8" });
+    n("circle", { cx: g + 6, cy: H - 10, r: 5, fill: "#C8102E" });
+    n("text", { x: g + 16, y: H - 6, "font-size": 12, fill: "#5F5F5C" }, "jour avec au moins un achat (barre noire)");
+    return svg;
+  }
+
+  function dessiner() {
+    var jours = donnees.jours.slice(-periode), t = somme(jours), ev = t.ev;
+    var vis = ev.view || 0;
+    // Tuiles
+    var tiles = $("[data-tiles]"); tiles.replaceChildren();
+    [["view", false], ["add_to_cart", false], ["checkout", false], ["purchase", true], ["waitlist", false]].forEach(function (x) {
+      var d = el("div", { class: "tile" + (x[1] ? " main" : "") }); d.appendChild(el("b", null, nombre(ev[x[0]]))); d.appendChild(el("span", null, NOMS[x[0]])); tiles.appendChild(d);
+    });
+    var tx = el("div", { class: "tile" }); tx.appendChild(el("b", null, pct(ev.purchase || 0, vis))); tx.appendChild(el("span", null, "Taux d'achat (achats ÷ visites)")); tiles.appendChild(tx);
+
+    // Graphique
+    var box = $("[data-chart]"); box.replaceChildren();
+    if (periode === 1) {
+      $("[data-chart-title]").textContent = "Visites heure par heure, aujourd'hui";
+      $("[data-chart-hint]").textContent = "Heure de Paris. Pratique pour savoir quand poster sur TikTok.";
+      box.appendChild(graphique(t.heures.map(function (v, h) { return { v: v, l: h + " h", a: 0 }; }), "Visites heure par heure aujourd'hui", box.clientWidth));
+    } else {
+      $("[data-chart-title]").textContent = "Visites par jour, " + periode + " derniers jours";
+      $("[data-chart-hint]").textContent = vis ? nombre(vis) + " visites en tout sur la période." : "Pas encore de visite sur la période.";
+      box.appendChild(graphique(jours.map(function (j) { return { v: (j.evenements || {}).view || 0, a: (j.evenements || {}).purchase || 0, l: jourCourt(j.jour) }; }), "Visites par jour", box.clientWidth));
+    }
+
+    // Entonnoir
+    var f = $("[data-funnel]"); f.replaceChildren();
+    [["view", "Visites"], ["add_to_cart", "Ajout au panier"], ["checkout", "Clic « Payer »"], ["purchase", "Achat"]].forEach(function (x) {
+      var n = ev[x[0]] || 0, row = el("div", { class: "fstep" });
+      row.appendChild(el("span", null, x[1]));
+      var bar = el("div", { class: "fbar" }), i = el("i"); i.style.width = (vis ? Math.min(100, n / vis * 100) : 0) + "%"; bar.appendChild(i); row.appendChild(bar);
+      var nn = el("span", { class: "n" }, nombre(n)); nn.appendChild(el("small", null, x[0] === "view" ? "100 %" : pct(n, vis))); row.appendChild(nn);
+      f.appendChild(row);
+    });
+
+    // Sources
+    var tb = $("[data-sources]"); tb.replaceChildren();
+    var srcs = Object.keys(t.sources).sort(function (a, b) { return ((t.sources[b].view || 0) - (t.sources[a].view || 0)) || ((t.sources[b].purchase || 0) - (t.sources[a].purchase || 0)); });
+    if (!srcs.length) { var tr0 = el("tr"); var td0 = el("td", { colspan: "6", class: "vide" }, "Pas encore de visite."); tr0.appendChild(td0); tb.appendChild(tr0); }
+    srcs.forEach(function (s) {
+      var x = t.sources[s], tr = el("tr");
+      [s, nombre(x.view), nombre(x.add_to_cart), nombre(x.checkout), nombre(x.purchase), pct(x.purchase || 0, x.view || 0)].forEach(function (v) { tr.appendChild(el("td", null, v)); });
+      tb.appendChild(tr);
+    });
+
+    // Listes
+    function liste(sel, obj, suffixe) {
+      var ul = $(sel); ul.replaceChildren();
+      var cles = Object.keys(obj).sort(function (a, b) { return obj[b] - obj[a]; }).slice(0, 8);
+      if (!cles.length) { ul.appendChild(el("li", { class: "vide" }, "Rien pour l'instant.")); return; }
+      cles.forEach(function (k) { var li = el("li"); li.appendChild(el("span", null, k)); li.appendChild(el("span", null, nombre(obj[k]) + (suffixe || ""))); ul.appendChild(li); });
+    }
+    liste("[data-appareils]", t.appareils, " visites");
+    liste("[data-pays]", t.pays, " visites");
+    var camp = {}; Object.keys(t.campagnes).forEach(function (c) { camp[c] = t.campagnes[c].view || 0; });
+    liste("[data-campagnes]", camp, " visites");
+
+    $("[data-maj]").textContent = new Date(donnees.genere).toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short", timeZone: "Europe/Paris" });
+  }
+
+  // Liens à partager
+  var liens = $("[data-liens]");
+  [["TikTok", "tiktok"], ["Instagram", "instagram"], ["Snapchat", "snapchat"], ["Pinterest", "pinterest"]].forEach(function (r) {
+    var url = location.origin + "/?utm_source=" + r[1], row = el("div", { class: "lien" });
+    row.appendChild(el("b", null, r[0])); row.appendChild(el("code", null, url));
+    var b = el("button", { type: "button" }, "Copier");
+    b.addEventListener("click", function () {
+      var fin = function (ok) { b.textContent = ok ? "Copié" : "Sélectionne et copie"; setTimeout(function () { b.textContent = "Copier"; }, 1800); };
+      if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { fin(true); }, function () { fin(false); }); else fin(false);
+    });
+    row.appendChild(b); liens.appendChild(row);
+  });
+
+  document.querySelectorAll("[data-p]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll("[data-p]").forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true"); periode = Number(b.getAttribute("data-p")); if (donnees) dessiner();
+    });
+  });
+  $("[data-refresh]").addEventListener("click", function () { charger().catch(function (e) { alerte(e.message); }); });
+  $("[data-logout]").addEventListener("click", function () { try { localStorage.removeItem("lueur_stats_code"); } catch (e) {} code = ""; montrer(false); });
+  function alerte(msg) { var e = $("[data-login-err]"); e.textContent = msg; e.hidden = false; montrer(false); }
+  $("[data-login]").addEventListener("submit", function (e) {
+    e.preventDefault(); code = $("#code").value.trim();
+    charger().then(function () { try { localStorage.setItem("lueur_stats_code", code); } catch (x) {} }).catch(function (x) { alerte(x.message); });
+  });
+
+  var attente; window.addEventListener("resize", function () { clearTimeout(attente); attente = setTimeout(function () { if (donnees) dessiner(); }, 200); });
+  if (code) charger().catch(function (e) { alerte(e.message); }); else montrer(false);
+})();
+</script>
+</body>
+</html>

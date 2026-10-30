@@ -1,0 +1,9 @@
+{
+  "name": "lueur",
+  "private": true,
+  "type": "module",
+  "description": "Boutique Lueur : page de vente, statistiques internes (Netlify Functions + Netlify Blobs).",
+  "dependencies": {
+    "@netlify/blobs": "10.7.13"
+  }
+}

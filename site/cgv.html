@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%23C8102E%27/%3E%3C/svg%3E">
+<title>Conditions générales de vente · Lueur</title>
+<meta name="description" content="Conditions générales de vente de la boutique Lueur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* Lueur — même esprit que Méconnaissable : blanc, gris clair, noir. Le rouge de la LED en seule touche de couleur. */
+:root {
+  --paper: #FFFFFF;
+  --mist: #F2F2F0;
+  --line: #DCDCD8;
+  --ink: #141414;
+  --graphite: #5F5F5C;
+  --led: #C8102E;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --radius: 22px;
+  --max: 1200px;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font); font-size: 1.0625rem; line-height: 1.5; font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, p { margin: 0; }
+[hidden] { display: none !important; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--paper); padding: 8px 12px; z-index: 60; }
+.skip:focus { left: 8px; }
+.small { font-size: 0.875rem; color: var(--graphite); }
+.center { text-align: center; }
+
+.notice-bar { margin: 0; background: var(--ink); color: var(--paper); text-align: center; padding-block: 9px; font-size: 0.875rem; }
+
+/* En-tête */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--paper); }
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-block: 14px;
+  background: rgba(255, 255, 255, 0.86); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  border-bottom: 1px solid rgba(20, 20, 20, 0.06);
+}
+.logo { font-weight: 800; font-stretch: 75%; font-size: 1.45rem; letter-spacing: -0.01em; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.logo i { width: 9px; height: 9px; border-radius: 50%; background: var(--led); box-shadow: 0 0 10px 2px rgba(200, 16, 46, .45); }
+.back { font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--graphite); }
+.back:hover { color: var(--ink); }
+
+/* Boutons */
+.btn {
+  font: inherit; font-weight: 600; font-size: 1.05rem; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+  background: var(--ink); color: var(--paper); border: 0; border-radius: 999px;
+  padding: 0 30px; transition: background-color 0.2s, transform 0.15s;
+}
+.btn:hover { background: #000; }
+.btn:active { transform: scale(0.98); }
+.btn[disabled] { opacity: 0.5; cursor: wait; }
+.btn-small { min-height: 44px; padding: 0 20px; font-size: 0.95rem; white-space: nowrap; }
+.btn-block { width: 100%; }
+
+/* Pages de texte (légal, contact, merci) */
+.page { max-width: 760px; margin: 0 auto; padding-block: 36px 72px; }
+.page h1 { font-weight: 800; font-stretch: 72%; font-size: clamp(2.3rem, 7vw, 3.5rem); line-height: 1; letter-spacing: -0.015em; margin-bottom: 10px; text-wrap: balance; }
+.page .maj { font-size: 0.9rem; color: var(--graphite); margin-bottom: 28px; }
+.page h2 { font-size: 1.15rem; font-weight: 700; margin: 30px 0 8px; }
+.page p, .page li { max-width: 65ch; }
+.page p { margin-bottom: 12px; }
+.page ul, .page ol { padding-left: 1.2rem; margin: 0 0 12px; display: grid; gap: 6px; }
+.page a { color: var(--ink); }
+.a-remplir { background: #FFF1B8; padding: 0 4px; border-radius: 4px; }
+.paper { background: var(--mist); border-radius: var(--radius); padding: 22px 24px; margin: 18px 0; }
+.paper p:last-child { margin-bottom: 0; }
+.form { display: grid; gap: 16px; max-width: 560px; }
+.form label { display: grid; gap: 6px; font-weight: 600; font-size: 0.95rem; }
+.form input, .form textarea { font: inherit; padding: 13px 14px; min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); width: 100%; }
+.form textarea { min-height: 150px; resize: vertical; }
+.form input:focus, .form textarea:focus { border-color: var(--ink); outline: none; }
+.form .btn { justify-self: start; }
+.hp { position: absolute; left: -5000px; }
+
+/* Pied de page */
+.site-footer { border-top: 1px solid var(--line); margin-top: 24px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; padding-block: 36px 40px; color: var(--graphite); font-size: 0.9rem; }
+.footer-brand { color: var(--ink); font-weight: 800; font-stretch: 75%; font-size: 1.25rem; margin-bottom: 4px; }
+.footer-links { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 10px; }
+.footer-links a { text-decoration: none; }
+.footer-links a:hover { color: var(--ink); text-decoration: underline; }
+.footer-small { font-size: 0.8rem; margin: 0; }
+@media (min-width: 860px) {
+  .footer-links { grid-auto-flow: column; justify-content: start; gap: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
+</style>
+</head>
+<body>
+<header class="site-header gut">
+  <a class="logo" href="index.html" aria-label="Lueur, accueil"><i aria-hidden="true"></i>Lueur</a>
+  <a class="back" href="index.html">← Retour à la boutique</a>
+</header>
+<main class="page gut">
+<h1>Conditions générales de vente</h1>
+<p class="maj">En vigueur au <span class="a-remplir">[DATE DE MISE EN LIGNE]</span></p>
+
+<h2>1. Qui vend</h2>
+<p>Les produits sont vendus par <span class="a-remplir">[PRÉNOM NOM]</span>, entrepreneur individuel, SIREN <span class="a-remplir">[SIREN]</span>, <span class="a-remplir">[ADRESSE]</span>, e-mail <span class="a-remplir">[E-MAIL]</span> (ci-après « Lueur »). Ces conditions s'appliquent à toute commande passée sur le site par un consommateur résidant en France métropolitaine.</p>
+
+<h2>2. Le produit</h2>
+<p>Lueur vend un masque LED en silicone pour le visage et le cou, à usage cosmétique et de bien-être. Ses caractéristiques sont décrites sur la page de vente et dans la notice. Les photos sont aussi fidèles que possible mais n'ont pas de valeur contractuelle.</p>
+
+<h2>3. Prix</h2>
+<p>Les prix sont indiqués en euros, toutes taxes comprises. La livraison en France métropolitaine est offerte. <span class="a-remplir">[TVA non applicable, art. 293 B du CGI — si micro-entreprise en franchise]</span>. Le prix appliqué est celui affiché au moment de la commande.</p>
+<p>Lorsqu'une réduction est annoncée, le prix barré est le prix le plus bas pratiqué par Lueur pendant les 30 jours précédant la réduction (article L112-1-1 du Code de la consommation).</p>
+
+<h2>4. Commande et paiement</h2>
+<p>Vous commandez en cliquant sur « Commander », puis en indiquant vos coordonnées et votre adresse de livraison sur la page de paiement sécurisée Stripe. La commande est ferme après validation du paiement. Vous recevez une confirmation par e-mail.</p>
+<p>Moyens de paiement : carte bancaire et portefeuilles proposés par Stripe (Apple Pay, Google Pay). Le compte est débité au moment de la commande.</p>
+
+<h2>5. Livraison</h2>
+<p>Le produit est expédié depuis un entrepôt situé en France, en <span class="a-remplir">[DÉLAI : ex. 3 à 7 jours ouvrés]</span>, avec un numéro de suivi envoyé par e-mail. En cas de retard de plus de 7 jours après la date annoncée, vous pouvez annuler la commande et être remboursé (articles L216-1 et suivants du Code de la consommation). Le risque de perte ou d'endommagement vous est transféré à la réception du colis.</p>
+
+<h2>6. Droit de rétractation : 30 jours</h2>
+<p>La loi vous donne 14 jours pour changer d'avis. Lueur vous en donne 30, à compter de la réception du produit, sans avoir à vous justifier.</p>
+<p>Pour l'exercer, envoyez-nous le formulaire ci-dessous ou toute déclaration claire par e-mail à <span class="a-remplir">[E-MAIL]</span>. Renvoyez ensuite le produit, complet, dans les 14 jours suivant votre demande, à l'adresse que nous vous indiquons. Les frais de retour sont à votre charge <span class="a-remplir">[ou : sont pris en charge par Lueur — à choisir]</span>.</p>
+<p>Nous vous remboursons dans les 14 jours suivant votre demande, avec le même moyen de paiement. Nous pouvons attendre d'avoir reçu le produit, ou une preuve de son envoi. Votre responsabilité peut être engagée si le produit a perdu de sa valeur à cause d'une manipulation autre que celle nécessaire pour l'essayer.</p>
+
+<div class="paper">
+  <p><strong>Formulaire de rétractation</strong> (à remplir et renvoyer uniquement si vous souhaitez vous rétracter)</p>
+  <p>À l'attention de <span class="a-remplir">[PRÉNOM NOM, ADRESSE, E-MAIL]</span> :</p>
+  <p>Je/Nous (*) vous notifie/notifions (*) par la présente ma/notre (*) rétractation du contrat portant sur la vente du bien ci-dessous :</p>
+  <p>Commandé le (*) / reçu le (*) :<br>Nom du (des) consommateur(s) :<br>Adresse du (des) consommateur(s) :<br>Signature du (des) consommateur(s) (uniquement en cas de notification sur papier) :<br>Date :</p>
+  <p class="small">(*) Rayez la mention inutile.</p>
+</div>
+
+<h2>7. Garanties légales</h2>
+<p>Le produit bénéficie de la garantie légale de conformité (articles L217-3 à L217-20 du Code de la consommation) et de la garantie des vices cachés (articles 1641 à 1649 du Code civil).</p>
+<div class="paper">
+  <p>Le consommateur dispose d'un délai de deux ans à compter de la délivrance du bien pour obtenir la mise en œuvre de la garantie légale de conformité en cas d'apparition d'un défaut de conformité. Durant un délai de deux ans à compter de la délivrance du bien, le consommateur n'est tenu d'établir que l'existence du défaut de conformité et non la date d'apparition de celui-ci.</p>
+  <p>La garantie légale de conformité emporte obligation pour le professionnel de fournir, le cas échéant, toutes les mises à jour nécessaires au maintien de la conformité du bien. Elle donne au consommateur droit à la réparation ou au remplacement du bien sans frais et sans inconvénient majeur pour lui. Si la réparation ou le remplacement est impossible, ou si le vendeur ne s'exécute pas, le consommateur a droit à une réduction du prix ou à la résolution du contrat, avec remboursement.</p>
+  <p>Le consommateur peut aussi invoquer la garantie des vices cachés (articles 1641 à 1649 du Code civil) dans un délai de deux ans à compter de la découverte du défaut.</p>
+  <p class="small"><span class="a-remplir">[À comparer avec l'encadré officiel prévu par le décret n° 2022-946 du 29 juin 2022 avant la mise en ligne.]</span></p>
+</div>
+
+<h2>8. Précautions d'utilisation</h2>
+<p>Le masque n'est pas un dispositif médical. Il ne doit pas être utilisé sans avis médical par les femmes enceintes, les personnes épileptiques ou sensibles à la lumière, les personnes sous traitement photosensibilisant ou souffrant d'une maladie de peau ou des yeux. Suivez la notice.</p>
+
+<h2>9. Service client et réclamations</h2>
+<p>Écrivez-nous à <span class="a-remplir">[E-MAIL]</span> ou via la page <a href="contact.html">Contact</a>. Nous répondons sous 48 heures ouvrées.</p>
+
+<h2>10. Médiation</h2>
+<p>En cas de litige non résolu avec notre service client, vous pouvez saisir gratuitement le médiateur de la consommation : <span class="a-remplir">[NOM ET SITE DU MÉDIATEUR — l'adhésion à un médiateur est obligatoire]</span>.</p>
+
+<h2>11. Données personnelles</h2>
+<p>Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+
+<h2>12. Droit applicable</h2>
+<p>Ces conditions sont soumises au droit français. Vous pouvez saisir la juridiction de votre lieu de résidence.</p>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner gut">
+    <p class="footer-brand">Lueur</p>
+    <p>Le soin qui s'allume, le soir, chez vous.</p>
+    <nav aria-label="Informations">
+      <ul class="footer-links">
+        <li><a href="livraison-retours.html">Livraison et retours</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cgv.html">Conditions générales de vente</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Confidentialité</a></li>
+      </ul>
+    </nav>
+    <p class="footer-small">Paiement sécurisé par Stripe.</p>
+  </div>
+</footer>
+
+</body>
+</html>

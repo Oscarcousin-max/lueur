@@ -1,0 +1,14 @@
+# Boutique Lueur : la page est dans "site", le moteur des statistiques dans "netlify/functions".
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# La page des statistiques ne doit pas apparaître dans Google.
+[[headers]]
+  for = "/stats.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"

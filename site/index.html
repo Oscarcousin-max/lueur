@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%23C8102E%27/%3E%3C/svg%3E">
+<title>Lueur, masque LED visage et cou</title>
+<meta name="description" content="Lueur : masque LED souple pour le visage et le cou, sans prise, 7 couleurs. Expédié depuis la France, livraison offerte, 30 jours pour changer d'avis.">
+<meta property="og:title" content="Lueur — Le soin qui s'allume.">
+<meta property="og:description" content="Masque LED souple, visage et cou. Expédié depuis la France, livraison offerte.">
+<meta property="og:type" content="product">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* Lueur — même esprit que Méconnaissable : blanc, gris clair, noir. Le rouge de la LED en seule touche de couleur. */
+:root {
+  --paper: #FFFFFF;
+  --mist: #F2F2F0;
+  --line: #DCDCD8;
+  --ink: #141414;
+  --graphite: #5F5F5C;
+  --led: #C8102E;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --radius: 22px;
+  --max: 1200px;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font); font-size: 1.0625rem; line-height: 1.5; font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, p { margin: 0; }
+[hidden] { display: none !important; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--paper); padding: 8px 12px; z-index: 60; }
+.skip:focus { left: 8px; }
+.small { font-size: 0.875rem; color: var(--graphite); }
+.center { text-align: center; }
+
+.notice-bar { margin: 0; background: var(--ink); color: var(--paper); text-align: center; padding-block: 9px; font-size: 0.875rem; }
+
+/* En-tête */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--paper); }
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-block: 14px;
+  background: rgba(255, 255, 255, 0.86); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  border-bottom: 1px solid rgba(20, 20, 20, 0.06);
+}
+.logo { font-weight: 800; font-stretch: 75%; font-size: 1.45rem; letter-spacing: -0.01em; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.logo i { width: 9px; height: 9px; border-radius: 50%; background: var(--led); box-shadow: 0 0 10px 2px rgba(200, 16, 46, .45); }
+.back { font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--graphite); }
+.back:hover { color: var(--ink); }
+
+/* Boutons */
+.btn {
+  font: inherit; font-weight: 600; font-size: 1.05rem; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+  background: var(--ink); color: var(--paper); border: 0; border-radius: 999px;
+  padding: 0 30px; transition: background-color 0.2s, transform 0.15s;
+}
+.btn:hover { background: #000; }
+.btn:active { transform: scale(0.98); }
+.btn[disabled] { opacity: 0.5; cursor: wait; }
+.btn-small { min-height: 44px; padding: 0 20px; font-size: 0.95rem; white-space: nowrap; }
+.btn-block { width: 100%; }
+
+/* Pages de texte (légal, contact, merci) */
+.page { max-width: 760px; margin: 0 auto; padding-block: 36px 72px; }
+.page h1 { font-weight: 800; font-stretch: 72%; font-size: clamp(2.3rem, 7vw, 3.5rem); line-height: 1; letter-spacing: -0.015em; margin-bottom: 10px; text-wrap: balance; }
+.page .maj { font-size: 0.9rem; color: var(--graphite); margin-bottom: 28px; }
+.page h2 { font-size: 1.15rem; font-weight: 700; margin: 30px 0 8px; }
+.page p, .page li { max-width: 65ch; }
+.page p { margin-bottom: 12px; }
+.page ul, .page ol { padding-left: 1.2rem; margin: 0 0 12px; display: grid; gap: 6px; }
+.page a { color: var(--ink); }
+.a-remplir { background: #FFF1B8; padding: 0 4px; border-radius: 4px; }
+.paper { background: var(--mist); border-radius: var(--radius); padding: 22px 24px; margin: 18px 0; }
+.paper p:last-child { margin-bottom: 0; }
+.form { display: grid; gap: 16px; max-width: 560px; }
+.form label { display: grid; gap: 6px; font-weight: 600; font-size: 0.95rem; }
+.form input, .form textarea { font: inherit; padding: 13px 14px; min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); width: 100%; }
+.form textarea { min-height: 150px; resize: vertical; }
+.form input:focus, .form textarea:focus { border-color: var(--ink); outline: none; }
+.form .btn { justify-self: start; }
+.hp { position: absolute; left: -5000px; }
+
+/* Pied de page */
+.site-footer { border-top: 1px solid var(--line); margin-top: 24px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; padding-block: 36px 40px; color: var(--graphite); font-size: 0.9rem; }
+.footer-brand { color: var(--ink); font-weight: 800; font-stretch: 75%; font-size: 1.25rem; margin-bottom: 4px; }
+.footer-links { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 10px; }
+.footer-links a { text-decoration: none; }
+.footer-links a:hover { color: var(--ink); text-decoration: underline; }
+.footer-small { font-size: 0.8rem; margin: 0; }
+@media (min-width: 860px) {
+  .footer-links { grid-auto-flow: column; justify-content: start; gap: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+/* Page de vente */
+body:has(.sticky-buy) { padding-bottom: 76px; }
+.cart-button {
+  font: inherit; font-size: 0.95rem; font-weight: 600; color: var(--ink); background: none; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0;
+}
+.cart-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 0.75rem; font-weight: 700; }
+.deadline { text-align: center; font-size: 0.875rem; color: var(--graphite); padding-block: 10px; background: var(--mist); margin: 0; }
+.deadline strong { color: var(--ink); }
+main { overflow-x: clip; }
+
+/* Hero */
+.hero { max-width: var(--max); margin: 0 auto; padding-block: 28px 40px; display: grid; gap: 28px; }
+.hero-copy { min-width: 0; }
+.hero-product { font-size: 1rem; font-weight: 600; color: var(--led); margin-bottom: 10px; }
+.hero-title {
+  font-weight: 900; font-stretch: 62%; line-height: 0.9; letter-spacing: -0.02em;
+  font-size: clamp(3.6rem, 16vw, 8.5rem); text-wrap: balance;
+}
+.hero-title span { display: inline-block; }
+.hero-sub { font-size: 1.2rem; color: var(--graphite); margin-top: 18px; max-width: 32ch; }
+.hero-buy { display: flex; align-items: center; gap: 14px 18px; margin-top: 26px; flex-wrap: wrap; }
+.price-box { display: inline-flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.price { font-size: 1.6rem; font-weight: 700; font-stretch: 85%; font-variant-numeric: tabular-nums; }
+.was { color: var(--graphite); text-decoration: line-through; font-size: 1.05rem; }
+.off { font-size: 0.8rem; font-weight: 700; color: var(--paper); background: var(--led); padding: 3px 8px; border-radius: 999px; }
+.hero-meta { font-size: 0.9rem; color: var(--graphite); margin-top: 14px; }
+.hero-stage, .tile-media, .night-media, .closing-media { position: relative; overflow: hidden; }
+.hero-stage { border-radius: var(--radius); background: #0B0B0C; aspect-ratio: 5 / 6; }
+.hero-stage img, .tile-media img, .night-media img, .closing-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.mask-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; font-size: 0.8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--graphite); }
+.hero-stage .ph { place-items: end center; color: #9A9A96; padding-bottom: 18px; }
+
+/* Arrivée de la page : un seul moment orchestré */
+.hero-title span { opacity: 0; transform: translateY(0.35em); animation: monte 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) forwards; }
+.hero-title span:nth-child(2) { animation-delay: 0.08s; }
+.hero-title span:nth-child(3) { animation-delay: 0.16s; }
+.hero-stage > * { animation: approche 1.6s cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+@keyframes monte { to { opacity: 1; transform: none; } }
+@keyframes approche { from { transform: scale(1.06); opacity: 0.6; } to { transform: none; opacity: 1; } }
+
+/* Phrase révélée au défilement */
+.statement { max-width: var(--max); margin: 0 auto; padding-block: 90px; }
+.statement p {
+  font-weight: 800; font-stretch: 70%; line-height: 1.02; letter-spacing: -0.015em;
+  font-size: clamp(2.4rem, 8.5vw, 5.6rem); max-width: 16ch;
+}
+.statement .w { transition: color 0.35s; color: #C9C9C5; }
+.statement .w.on { color: var(--ink); }
+
+/* Deux grandes images */
+.duo { max-width: var(--max); margin: 0 auto; display: grid; gap: 16px; }
+.tile { margin: 0; min-width: 0; }
+.tile-media { border-radius: var(--radius); background: var(--mist); aspect-ratio: 4 / 5; }
+.tile figcaption { margin-top: 12px; font-size: 1rem; color: var(--graphite); }
+
+/* Bande noire : les 7 couleurs */
+.night { background: #000; color: #fff; margin-top: 96px; }
+.night-inner { max-width: var(--max); margin: 0 auto; padding-block: 80px; }
+.night-title { font-weight: 900; font-stretch: 62%; line-height: 0.95; letter-spacing: -0.02em; font-size: clamp(2.8rem, 11vw, 6rem); }
+.night-sub { color: #A8A8A4; font-size: 1.15rem; margin: 16px 0 36px; max-width: 36ch; }
+.lab { display: grid; gap: 24px; align-items: center; margin-bottom: 40px; }
+.lab-stage { position: relative; width: 100%; max-width: 460px; aspect-ratio: 4 / 5; justify-self: center; }
+.lab-ui { display: grid; gap: 16px; justify-items: start; }
+.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+.sw { width: 44px; height: 44px; border-radius: 50%; border: 2px solid transparent; background: var(--c); cursor: pointer; padding: 0; box-shadow: inset 0 0 0 3px #000; }
+.sw[aria-pressed="true"] { border-color: #fff; }
+.lab-name { font-weight: 800; font-stretch: 70%; font-size: 2.2rem; line-height: 1; }
+.lab-note { color: #A8A8A4; font-size: 0.9rem; }
+.night-grid { display: grid; gap: 16px; }
+.night-media { border-radius: var(--radius); aspect-ratio: 4 / 5; background: #1A1A1A; }
+.night-media .ph { color: #8E8E8A; }
+
+/* Engagements */
+.points { max-width: var(--max); margin: 0 auto; padding-block: 80px 40px; display: grid; gap: 28px; }
+.point h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+.point p { color: var(--graphite); }
+
+/* Sections de texte */
+.specs, .faq, .reviews, .safety { max-width: 860px; margin: 0 auto; padding-top: 56px; }
+.section-title { font-weight: 800; font-stretch: 75%; font-size: clamp(1.9rem, 5vw, 2.6rem); letter-spacing: -0.01em; margin-bottom: 20px; }
+.specs dl { margin: 0; border-top: 1px solid var(--line); }
+.specs dl div { display: grid; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.specs dt { font-weight: 600; }
+.specs dd { margin: 0; color: var(--graphite); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-of-type { border-top: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 32px 18px 0; font-weight: 600; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 14px; font-size: 1.4rem; font-weight: 400; transition: transform 0.2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--graphite); padding: 0 0 18px; max-width: 62ch; }
+.reviews p { color: var(--graphite); max-width: 62ch; }
+.safety ul { margin: 0; padding-left: 1.1rem; color: var(--graphite); display: grid; gap: 6px; font-size: 0.95rem; }
+.fine { font-size: 0.8rem; color: var(--graphite); margin-top: 16px; }
+
+/* Fin de page */
+.closing { text-align: center; padding-block: 110px 90px; }
+.closing-media { width: min(100%, 340px); aspect-ratio: 1; margin: 0 auto 36px; border-radius: 50%; background: #0B0B0C; }
+.closing-title { font-weight: 900; font-stretch: 62%; line-height: 0.95; font-size: clamp(3rem, 12vw, 6.5rem); letter-spacing: -0.02em; }
+.closing-price { color: var(--graphite); margin: 14px 0 26px; font-size: 1.1rem; }
+
+/* Barre d'achat mobile */
+.sticky-buy {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding-top: 10px; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(20, 20, 20, 0.08); transition: transform 0.3s ease;
+}
+.sticky-buy.is-hidden { transform: translateY(110%); }
+.sticky-label { font-size: 0.95rem; }
+
+/* Panier */
+.cart { border: 0; padding: 0; width: min(100% - 24px, 440px); border-radius: var(--radius); background: var(--paper); color: var(--ink); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25); }
+.cart::backdrop { background: rgba(20, 20, 20, 0.4); backdrop-filter: blur(4px); }
+.cart-inner { padding: 22px; }
+.cart-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.cart-head h2 { font-weight: 800; font-stretch: 75%; font-size: 1.6rem; }
+.icon-btn { font: inherit; font-size: 1.1rem; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+.icon-btn:hover { border-color: var(--ink); }
+.cart-line { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.cart-name { font-weight: 600; }
+.cart-row { display: flex; justify-content: space-between; gap: 12px; margin: 12px 0; }
+.cart-total { font-size: 1.15rem; font-weight: 700; }
+.check { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0; font-size: 0.95rem; }
+.check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--ink); flex: none; }
+.error { color: var(--led); font-weight: 600; margin: 0 0 12px; }
+.cart .center { margin-top: 10px; }
+.apercu { background: #FFE27A; color: #141414; text-align: center; font-size: 0.85rem; font-weight: 600; padding: 8px 16px; margin: 0; }
+
+/* Grands écrans */
+@media (min-width: 860px) {
+  body:has(.sticky-buy) { padding-bottom: 0; }
+  .sticky-buy { display: none; }
+  .site-header { padding-block: 18px; }
+  .hero { grid-template-columns: 1.05fr 1fr; align-items: center; gap: 56px; padding-block: 56px 72px; }
+  .hero-title { font-size: clamp(5rem, 9vw, 8.5rem); }
+  .statement { padding-block: 140px; }
+  .duo { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .points { grid-template-columns: repeat(3, 1fr); padding-block: 110px 40px; }
+  .specs dl div { grid-template-columns: 200px 1fr; gap: 24px; }
+  .night { margin-top: 120px; }
+  .night-inner { padding-block: 120px; }
+  .lab { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .night-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title span, .hero-stage > * { animation: none; opacity: 1; transform: none; }
+  .statement .w { transition: none; color: var(--ink); }
+  .sticky-buy { transition: none; }
+}
+
+/* Liste d'attente (avant l'ouverture des ventes) */
+.wait-title { font-weight: 800; font-stretch: 75%; font-size: 1.35rem; margin: 18px 0 6px; }
+.wait-form { display: grid; gap: 10px; margin: 16px 0 12px; }
+.wait-label { font-weight: 600; font-size: 0.95rem; }
+.wait-form input[type="email"] { font: inherit; min-height: 48px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); width: 100%; }
+.wait-form input[type="email"]:focus { border-color: var(--ink); outline: none; }
+[data-wait] .small { margin-top: 6px; }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<p class="apercu gut" data-apercu hidden>Aperçu du prix barré tel qu'il s'affichera du 30 novembre au 24 décembre. Le paiement est désactivé dans cet aperçu.</p>
+<p class="notice-bar gut" role="status" data-notice>Boutique en préparation : les commandes ouvrent très bientôt.</p>
+<header class="site-header gut">
+  <a class="logo" href="./" aria-label="Lueur, accueil"><i aria-hidden="true"></i>Lueur</a>
+  <button class="cart-button" type="button" data-open-cart aria-label="Ouvrir le panier">
+    Panier <span class="cart-count" data-cart-count>0</span>
+  </button>
+</header>
+
+<p class="deadline gut" data-deadline>Livraison offerte, expédiée depuis la France.</p>
+
+<main id="contenu">
+  <section class="hero gut" aria-labelledby="titre">
+    <div class="hero-copy">
+      <p class="hero-product">Masque LED Lueur</p>
+      <h1 id="titre" class="hero-title"><span>Le soin</span> <span>qui</span> <span>s'allume.</span></h1>
+      <p class="hero-sub">Masque LED souple pour le visage et le cou. Sans prise, sur batterie. Expédié depuis la France.</p>
+      <div class="hero-buy">
+        <span class="price-box"><span class="price" data-price>89 €</span><s class="was" data-was hidden>89 €</s><span class="off" data-off hidden>−17 %</span></span>
+        <button class="btn" type="button" data-add-to-cart>Ajouter au panier</button>
+      </div>
+      <p class="hero-meta" data-delai-texte>Livraison offerte, estimée en 3 à 7 jours ouvrés.</p>
+    </div>
+    <div class="hero-stage" data-photo="0">
+      <canvas class="mask-canvas" data-mask aria-hidden="true"></canvas>
+      <span class="ph">Illustration</span>
+    </div>
+  </section>
+
+  <section class="statement gut" aria-label="Le masque">
+    <p data-reveal>Une lumière. Un masque souple. Un moment rien que pour vous.</p>
+  </section>
+
+  <section class="duo gut" aria-label="Détails du masque">
+    <figure class="tile">
+      <div class="tile-media" data-photo="1"><span class="ph">Photo 2 · gros plan silicone et LED</span></div>
+      <figcaption>Silicone souple : il épouse le front, les joues et le menton.</figcaption>
+    </figure>
+    <figure class="tile">
+      <div class="tile-media" data-photo="2"><span class="ph">Photo 3 · de profil, le cou couvert</span></div>
+      <figcaption>Une deuxième pièce pour le cou, là où beaucoup de masques s'arrêtent.</figcaption>
+    </figure>
+  </section>
+
+  <section class="night" aria-labelledby="titre-couleurs">
+    <div class="night-inner gut">
+      <h2 id="titre-couleurs" class="night-title">Sept couleurs.</h2>
+      <p class="night-sub">Rouge, bleu, vert, jaune, violet, cyan ou blanc, et 5 niveaux d'intensité. Vous choisissez selon votre envie du soir.</p>
+      <div class="lab">
+        <div class="lab-stage"><canvas class="mask-canvas" data-mask data-lab role="img" aria-label="Illustration du masque allumé en rouge"></canvas></div>
+        <div class="lab-ui">
+          <p class="lab-name" data-color-name aria-live="polite">Rouge</p>
+          <div class="swatches" role="group" aria-label="Choisir une couleur" data-swatches></div>
+          <p class="lab-note">Illustration. Touchez une couleur pour allumer le masque.</p>
+        </div>
+      </div>
+      <div class="night-grid">
+        <div class="night-media" data-photo="3"><span class="ph">Photo 4 · le soir, allongée sur le canapé</span></div>
+        <div class="night-media" data-photo="4"><span class="ph">Photo 5 · la boîte cadeau sous le sapin</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="points gut" aria-label="Nos engagements">
+    <div class="point"><h2>Expédié depuis la France</h2><p data-delai-court>Colis suivi, livré en 3 à 7 jours ouvrés.</p></div>
+    <div class="point"><h2>Livraison offerte</h2><p>Le prix affiché est le prix payé.</p></div>
+    <div class="point"><h2>30 jours pour changer d'avis</h2><p>Retour simple, remboursement sous 14 jours.</p></div>
+  </section>
+
+  <section class="specs gut" aria-labelledby="titre-specs">
+    <h2 id="titre-specs" class="section-title">Caractéristiques</h2>
+    <dl>
+      <div><dt>Modèle</dt><dd>Lueur, masque LED pour le visage et sa pièce pour le cou</dd></div>
+      <div><dt>Matière</dt><dd>Silicone souple, 3,5 mm d'épaisseur, 202 g</dd></div>
+      <div><dt>Lumière</dt><dd>7 couleurs, 5 niveaux d'intensité, 103 LED (70 sur le visage, 33 sur le cou)</dd></div>
+      <div><dt>Séance</dt><dd>Arrêt automatique au bout de 10 minutes</dd></div>
+      <div><dt>Batterie</dt><dd>Sans prise : une télécommande-batterie rechargeable de 1 200 mAh, reliée au masque par un câble. Recharge en 4 à 5 h, 1 à 2 h d'utilisation.</dd></div>
+      <div><dt>Fixation</dt><dd>Sangles élastiques auto-agrippantes</dd></div>
+      <div><dt>Dimensions</dt><dd>Masque 26,3 × 18 cm, pièce pour le cou 23,1 cm de large</dd></div>
+      <div><dt>Dans la boîte</dt><dd>Le masque, la pièce pour le cou, 1 paire de protections pour les yeux, 2 paires de sangles, la télécommande-batterie, le câble de recharge, la notice <span class="a-remplir">(notice en français à vérifier)</span></dd></div>
+      <div><dt>Livraison</dt><dd data-delai-specs>Offerte, suivie, depuis la France. Estimée en 3 à 7 jours ouvrés.</dd></div>
+      <div><dt>Prix</dt><dd><span data-price>89 €</span>. <span class="a-remplir">TVA non applicable, art. 293 B du CGI (si micro-entreprise)</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="faq gut" aria-labelledby="titre-faq">
+    <h2 id="titre-faq" class="section-title">Questions fréquentes</h2>
+    <details><summary>Quand vais-je le recevoir ?</summary><p data-delai-faq>Le masque part de France. Comptez 3 à 7 jours ouvrés après votre commande. Vous recevez le numéro de suivi par e-mail dès l'envoi.</p></details>
+    <details><summary>Est-ce qu'il s'adapte à tous les visages ?</summary><p>Il est en silicone souple et suit la forme du visage. Il tient avec des sangles élastiques auto-agrippantes que vous réglez à votre taille. La pièce pour le cou s'attache de la même façon.</p></details>
+    <details><summary>Combien de temps dure une séance ?</summary><p>Le masque s'éteint tout seul au bout de 10 minutes.</p></details>
+    <details><summary>Faut-il le brancher ?</summary><p>Non. Il fonctionne avec une petite télécommande-batterie rechargeable, reliée au masque par un câble. Une charge (4 à 5 heures) donne 1 à 2 heures d'utilisation. Un voyant rouge clignote pendant la charge et reste allumé quand c'est fini.</p></details>
+    <details><summary>Et si je change d'avis ?</summary><p>Vous avez 30 jours après réception. Tout est expliqué sur la page <a href="livraison-retours.html">Livraison et retours</a>.</p></details>
+    <details><summary>Le paiement est-il sécurisé ?</summary><p>Vous payez sur la page sécurisée de Stripe. Vos données de carte ne passent jamais par notre site.</p></details>
+    <details><summary>Qui ne doit pas l'utiliser ?</summary><p>Demandez l'avis de votre médecin avant de l'utiliser si vous êtes enceinte, épileptique ou sensible à la lumière, si vous suivez un traitement qui rend la peau sensible au soleil, ou si vous avez une maladie de la peau ou des yeux.</p></details>
+  </section>
+
+  <section class="reviews gut" aria-labelledby="titre-avis">
+    <h2 id="titre-avis" class="section-title">Avis clients</h2>
+    <p>Les premiers avis apparaîtront ici après les premières livraisons. Nous publions uniquement des avis de clients ayant reçu le masque.</p>
+  </section>
+
+  <section class="safety gut" aria-labelledby="titre-securite">
+    <h2 id="titre-securite" class="section-title">Précautions</h2>
+    <ul>
+      <li>Appareil de bien-être à usage cosmétique : il ne soigne aucune maladie et ne remplace pas l'avis d'un professionnel de santé.</li>
+      <li>Ne regardez pas les LED directement. Gardez les yeux fermés et utilisez les protections pour les yeux fournies.</li>
+      <li>Arrêtez en cas de rougeur, de chaleur ou d'inconfort.</li>
+      <li>Ne pas utiliser sous la douche ni dans le bain. Ne pas utiliser pendant la recharge.</li>
+      <li>Tenir hors de portée des enfants. Suivez toujours la notice.</li>
+    </ul>
+    <p class="fine">Fabricant : <span class="a-remplir">À COMPLÉTER (demander au vendeur AliExpress)</span>. Personne responsable dans l'Union européenne : <span class="a-remplir">À COMPLÉTER (importateur ou responsable UE, demander au vendeur)</span>. Vendu par <span class="a-remplir">À COMPLÉTER (Prénom Nom, adresse postale)</span>.</p>
+  </section>
+
+  <section class="closing gut" aria-label="Commander">
+    <div class="closing-media" data-photo="5"><canvas class="mask-canvas" data-mask aria-hidden="true"></canvas></div>
+    <p class="closing-title">Lueur.</p>
+    <p class="closing-price"><span data-price>89 €</span>, livraison offerte.</p>
+    <button class="btn" type="button" data-add-to-cart>Ajouter au panier</button>
+  </section>
+</main>
+
+<div class="sticky-buy gut" data-sticky>
+  <span class="sticky-label">Lueur <b data-price>89 €</b></span>
+  <button class="btn btn-small" type="button" data-add-to-cart>Ajouter au panier</button>
+</div>
+
+<dialog class="cart" data-cart aria-labelledby="titre-panier">
+  <div class="cart-inner">
+    <div class="cart-head">
+      <h2 id="titre-panier">Votre panier</h2>
+      <button class="icon-btn" type="button" data-close-cart aria-label="Fermer le panier">✕</button>
+    </div>
+    <div data-cart-empty>
+      <p>Votre panier est vide.</p>
+    </div>
+    <div data-cart-full hidden>
+      <div class="cart-line">
+        <div>
+          <p class="cart-name">Masque LED Lueur</p>
+          <p class="small">Visage et cou, silicone souple, 7 couleurs</p>
+        </div>
+        <button class="icon-btn" type="button" data-remove aria-label="Retirer du panier">−</button>
+      </div>
+      <p class="cart-row"><span>Prix</span><span><s class="was" data-was hidden>89 €</s> <span data-price>89 €</span></span></p>
+      <p class="cart-row"><span>Livraison suivie</span><span>Offerte</span></p>
+      <p class="cart-row cart-total"><span>Total</span><span data-price>89 €</span></p>
+      <p class="small">Livraison en France métropolitaine. <span class="a-remplir">TVA non applicable, art. 293 B du CGI (si micro-entreprise)</span></p>
+      <div data-pay>
+        <label class="check">
+          <input type="checkbox" id="cgv" data-cgv>
+          <span>J'ai lu et j'accepte les <a href="cgv.html" target="_blank" rel="noopener">conditions générales de vente</a>.</span>
+        </label>
+        <p class="error" data-cart-error role="alert" hidden></p>
+        <button class="btn btn-block" type="button" data-checkout>Payer en sécurité</button>
+        <p class="small center">Vous allez être redirigé vers la page de paiement sécurisée de Stripe.</p>
+      </div>
+      <div data-wait hidden>
+        <p class="wait-title">Les commandes ouvrent très bientôt.</p>
+        <p class="small">Laissez votre e-mail : on vous prévient le jour de l'ouverture, une seule fois.</p>
+        <form class="wait-form" name="liste-attente" method="POST" data-netlify="true" netlify-honeypot="champ-robot" data-wait-form>
+          <input type="hidden" name="form-name" value="liste-attente">
+          <p class="hp"><label>Ne pas remplir <input name="champ-robot" tabindex="-1" autocomplete="off"></label></p>
+          <label class="wait-label" for="email-attente">Votre e-mail</label>
+          <input id="email-attente" name="email" type="email" autocomplete="email" required placeholder="prenom@exemple.fr">
+          <button class="btn btn-block" type="submit">Me prévenir</button>
+        </form>
+        <p class="small" data-wait-msg role="status" hidden></p>
+        <p class="small">Votre e-mail sert uniquement à vous prévenir de l'ouverture. Détails dans la page <a href="confidentialite.html">Confidentialité</a>.</p>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="footer-inner gut">
+    <p class="footer-brand">Lueur</p>
+    <p>Le soin qui s'allume, le soir, chez vous.</p>
+    <nav aria-label="Informations">
+      <ul class="footer-links">
+        <li><a href="livraison-retours.html">Livraison et retours</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cgv.html">Conditions générales de vente</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Confidentialité</a></li>
+      </ul>
+    </nav>
+    <p class="footer-small">Paiement sécurisé par Stripe. © 2026 <span class="a-remplir">À COMPLÉTER (Prénom Nom)</span></p>
+  </div>
+</footer>
+
+<script>
+/* ==============================================================
+   RÉGLAGES DE LA BOUTIQUE : c'est la seule partie à modifier.
+   ============================================================== */
+window.SHOP = {
+  prixNormal: 89,                              // prix habituel en euros
+  prixNoel: 79,                                // prix pendant l'offre de Noël
+  debutOffre: "2026-12-12T00:00:00+01:00",     // prix barré : 30 jours APRÈS l'ouverture des ventes (à ajuster)
+  finOffre:   "2026-12-24T23:59:59+01:00",     // et disparaît tout seul après
+  dateLimiteNoel: "2026-12-15T23:59:59+01:00", // dernière commande livrée avant Noël (à vérifier avec le délai réel)
+  delai: "3 à 7 jours ouvrés",                 // délai de livraison (à vérifier sur la fiche AliExpress)
+  lienPaiementNormal: "COLLER_ICI_LE_LIEN_STRIPE_A_89",
+  lienPaiementNoel:   "COLLER_ICI_LE_LIEN_STRIPE_A_79",
+  photos: [                                    // tes photos, dans le dossier images/
+    "images/lueur-face.jpg",                   // 0 : de face, masque allumé en rouge (grande photo du haut)
+    "images/lueur-detail.jpg",                 // 1 : gros plan sur le silicone et les LED
+    "images/lueur-cou.jpg",                    // 2 : de profil, on voit le cou couvert
+    "images/lueur-canape.jpg",                 // 3 : le soir, allongée sur le canapé
+    "images/lueur-cadeau.jpg",                 // 4 : la boîte cadeau sous le sapin
+    "images/lueur-trois-quarts.jpg"            // 5 : de trois quarts (photo ronde du bas)
+  ]
+};
+/* ============================================================== */
+
+/* ---- Statistiques internes : visites, provenance, clics (sans cookie, anonyme) ---- */
+(function () {
+  var actif = location.protocol.indexOf("http") === 0 && window.self === window.top && !/^(localhost|127\.)/.test(location.hostname);
+  function lire(k) { try { return sessionStorage.getItem(k) || ""; } catch (e) { return ""; } }
+  function ecrire(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+  var q = new URLSearchParams(location.search);
+  var source = q.get("utm_source") || "";
+  if (!source && document.referrer) {
+    try {
+      var h = new URL(document.referrer).hostname.replace(/^www\./, "");
+      if (h && h !== location.hostname) {
+        source = /tiktok/.test(h) ? "tiktok" : /instagram/.test(h) ? "instagram" : /facebook|fb\.|messenger/.test(h) ? "facebook"
+          : /google\./.test(h) ? "google" : /pinterest/.test(h) ? "pinterest" : /snapchat/.test(h) ? "snapchat" : /youtube/.test(h) ? "youtube" : h;
+      }
+    } catch (e) {}
+  }
+  if (source) { ecrire("lueur_source", source.toLowerCase().slice(0, 40)); if (q.get("utm_campaign")) ecrire("lueur_campagne", q.get("utm_campaign").slice(0, 40)); }
+  window.lueurSuivi = function (evenement) {
+    if (!actif) return;
+    try {
+      fetch("/api/track", { method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ event: evenement, source: lire("lueur_source") || "direct", campaign: lire("lueur_campagne"),
+          page: location.pathname, mobile: window.matchMedia("(max-width: 860px)").matches }) }).catch(function () {});
+    } catch (e) {}
+  };
+  var cle = "lueur_vu_" + location.pathname;
+  if (!lire(cle)) { ecrire(cle, "1"); window.lueurSuivi("view"); }
+})();
+
+(function () {
+  "use strict";
+  var S = window.SHOP;
+  var suivi = window.lueurSuivi || function () {};
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var now = new Date();
+  var apercu = location.hash === "#apercu-promo";
+  var offre = apercu || (now >= new Date(S.debutOffre) && now <= new Date(S.finOffre));
+  var prix = offre ? S.prixNoel : S.prixNormal;
+  var lien = offre ? S.lienPaiementNoel : S.lienPaiementNormal;
+  var lienPret = /^https:\/\//.test(lien);
+  function euros(n) { return n.toLocaleString("fr-FR", { style: "currency", currency: "EUR", minimumFractionDigits: n % 1 ? 2 : 0 }); }
+  function jour(d) { return d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/Paris" }); }
+
+  // ---- Prix (le prix barré n'apparaît que pendant l'offre) ----
+  $$("[data-price]").forEach(function (el) { el.textContent = euros(prix); });
+  $$("[data-was]").forEach(function (el) { el.textContent = euros(S.prixNormal); el.hidden = !offre; });
+  $$("[data-off]").forEach(function (el) { el.textContent = "−" + Math.round((1 - S.prixNoel / S.prixNormal) * 100) + " %"; el.hidden = !offre; });
+  if (apercu) $("[data-apercu]").hidden = false;
+
+  // ---- Bandeaux du haut ----
+  var limite = new Date(S.dateLimiteNoel);
+  var notice = $("[data-notice]");
+  if (lienPret || apercu) {
+    notice.textContent = offre
+      ? "Offre de Noël : " + euros(S.prixNoel) + " au lieu de " + euros(S.prixNormal) + ", jusqu'au " + new Date(S.finOffre).toLocaleDateString("fr-FR", { day: "numeric", month: "long", timeZone: "Europe/Paris" }) + "."
+      : "Livraison offerte. 30 jours pour changer d'avis.";
+  }
+  var deadline = $("[data-deadline]");
+  if (now <= limite) {
+    deadline.innerHTML = "Commandez avant le <strong>" + jour(limite) + "</strong> pour le recevoir avant Noël.";
+  } else {
+    deadline.textContent = "Livraison estimée en " + S.delai + ", depuis la France.";
+  }
+  $("[data-delai-texte]").textContent = "Livraison offerte, estimée en " + S.delai + ".";
+  $("[data-delai-court]").textContent = "Colis suivi, livré en " + S.delai + ".";
+  $("[data-delai-specs]").textContent = "Offerte, suivie, depuis la France. Estimée en " + S.delai + ".";
+  $("[data-delai-faq]").textContent = "Le masque part de France. Comptez " + S.delai + " après votre commande. Vous recevez le numéro de suivi par e-mail dès l'envoi.";
+
+  // ---- Photos : elles remplacent l'illustration dès qu'elles sont dans le dossier images/ ----
+  $$("[data-photo]").forEach(function (slot) {
+    var i = parseInt(slot.getAttribute("data-photo"), 10);
+    var src = S.photos[i];
+    if (!src) return;
+    var img = new Image();
+    img.alt = "Masque LED Lueur, photo " + (i + 1);
+    img.decoding = "async";
+    img.onload = function () { slot.appendChild(img); };
+    img.src = src;
+  });
+
+  // ---- Barre d'achat mobile : visible quand le bouton principal n'est plus à l'écran ----
+  var sticky = $("[data-sticky]"), heroBuy = $(".hero-buy");
+  if (sticky && heroBuy && "IntersectionObserver" in window) {
+    sticky.classList.add("is-hidden");
+    new IntersectionObserver(function (entries) {
+      sticky.classList.toggle("is-hidden", entries[0].isIntersecting || entries[0].boundingClientRect.top > 0);
+    }).observe(heroBuy);
+  }
+
+  // ---- Phrase qui s'éclaire mot à mot au défilement ----
+  var reveal = $("[data-reveal]");
+  if (reveal) {
+    var words = reveal.textContent.trim().split(/\s+/);
+    reveal.textContent = "";
+    words.forEach(function (w, k) {
+      var s = document.createElement("span"); s.className = "w"; s.textContent = w;
+      reveal.appendChild(s); if (k < words.length - 1) reveal.appendChild(document.createTextNode(" "));
+    });
+    var spans = $$(".w", reveal);
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var update = function () {
+      var r = reveal.getBoundingClientRect(), vh = window.innerHeight;
+      var p = still ? 1 : Math.min(Math.max((vh * 0.85 - r.top) / (r.height + vh * 0.35), 0), 1);
+      var n = Math.round(p * spans.length);
+      spans.forEach(function (s, k) { s.classList.toggle("on", k < n); });
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  // ---- Panier (1 masque ; la quantité se change sur la page Stripe) ----
+  var dialog = $("[data-cart]");
+  var dansPanier = false;
+  try { dansPanier = localStorage.getItem("lueur_panier") === "1"; } catch (e) {}
+  function garder(v) { dansPanier = v; try { localStorage.setItem("lueur_panier", v ? "1" : "0"); } catch (e) {} render(); }
+  function render() {
+    $$("[data-cart-count]").forEach(function (el) { el.textContent = dansPanier ? "1" : "0"; });
+    $("[data-cart-empty]").hidden = dansPanier;
+    $("[data-cart-full]").hidden = !dansPanier;
+    // Tant que le paiement n'est pas ouvert : liste d'attente à la place du bouton Payer
+    $("[data-pay]").hidden = !(lienPret || apercu);
+    $("[data-wait]").hidden = lienPret || apercu;
+  }
+  function erreur(msg) { var e = $("[data-cart-error]"); e.textContent = msg; e.hidden = !msg; }
+  function ouvrir() { erreur(""); render(); if (dialog.showModal) dialog.showModal(); else dialog.setAttribute("open", ""); }
+  $$("[data-add-to-cart]").forEach(function (b) { b.addEventListener("click", function () { garder(true); suivi("add_to_cart"); ouvrir(); }); });
+  $$("[data-open-cart]").forEach(function (b) { b.addEventListener("click", function () { suivi("open_cart"); ouvrir(); }); });
+  $("[data-close-cart]").addEventListener("click", function () { dialog.close ? dialog.close() : dialog.removeAttribute("open"); });
+  $("[data-remove]").addEventListener("click", function () { garder(false); });
+  $("[data-checkout]").addEventListener("click", function () {
+    if (!$("[data-cgv]").checked) { erreur("Cochez la case des conditions générales de vente pour continuer."); return; }
+    if (apercu) { erreur("Aperçu : le paiement est désactivé ici."); return; }
+    if (!lienPret) { erreur("Les commandes ouvrent très bientôt. Revenez dans quelques jours."); return; }
+    suivi("checkout");
+    this.disabled = true; this.textContent = "Ouverture du paiement…";
+    location.href = lien;
+  });
+
+  // ---- Liste d'attente (formulaire Netlify) ----
+  var wform = $("[data-wait-form]"), wmsg = $("[data-wait-msg]");
+  wform.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (window.self !== window.top || location.protocol.indexOf("http") !== 0) {
+      wmsg.textContent = "Aperçu : l'inscription fonctionnera une fois le site en ligne."; wmsg.hidden = false; return;
+    }
+    var btn = wform.querySelector("button"); btn.disabled = true; btn.textContent = "Envoi…";
+    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(wform)).toString() })
+      .then(function (r) {
+        if (!r.ok) throw new Error();
+        suivi("waitlist");
+        wform.hidden = true; wmsg.textContent = "C'est noté : vous serez prévenu(e) le jour de l'ouverture."; wmsg.hidden = false;
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = "Me prévenir"; wmsg.textContent = "L'envoi n'a pas marché. Vérifiez votre connexion et réessayez."; wmsg.hidden = false; });
+  });
+  render();
+})();
+
+/* ---- Illustration du masque allumé (remplacée par les photos quand elles arrivent) ---- */
+(function () {
+  var COULEURS = [["Rouge", "#FF3B3B"], ["Bleu", "#3B7BFF"], ["Vert", "#2EE59D"], ["Jaune", "#FFD23B"], ["Violet", "#A85CFF"], ["Cyan", "#2FE0F0"], ["Blanc", "#FFF2E4"]];
+  var couleur = COULEURS[0][1];
+  var calme = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Comme le vrai produit : une pièce visage (yeux, nez, bouche ouverts) + une pièce cou, reliées à une télécommande-batterie
+  var visage = { cx: 200, cy: 180, rx: 118, ry: 150 };
+  var yeux = [{ cx: 150, cy: 162, rx: 31, ry: 14 }, { cx: 250, cy: 162, rx: 31, ry: 14 }];
+  var bouche = { cx: 200, cy: 268, rx: 38, ry: 13 };
+  var nez = { haut: 180, bas: 236, demi: 17 };
+  var cou = { haut: 352, bas: 440, a: 96, b: 112 };
+  function dansE(x, y, e, m) { m = m || 0; return Math.pow(x - e.cx, 2) / Math.pow(e.rx + m, 2) + Math.pow(y - e.cy, 2) / Math.pow(e.ry + m, 2) <= 1; }
+  function demi(y) { return cou.a + (y - cou.haut) / (cou.bas - cou.haut) * (cou.b - cou.a); }
+  function dansCou(x, y, m) { return y >= cou.haut + m && y <= cou.bas - m && Math.abs(x - 200) <= demi(y) - m; }
+  function dansNez(x, y, m) { if (y < nez.haut - m || y > nez.bas + m) return false; var t = Math.max(0, (y - nez.haut) / (nez.bas - nez.haut)); return Math.abs(x - 200) <= t * nez.demi + m; }
+  function trou(c, X, Y, s) {
+    yeux.concat([bouche]).forEach(function (e) { c.moveTo(X(e.cx + e.rx), Y(e.cy)); c.ellipse(X(e.cx), Y(e.cy), e.rx * s, e.ry * s, 0, 0, Math.PI * 2); });
+    c.moveTo(X(200), Y(nez.haut)); c.lineTo(X(200 + nez.demi), Y(nez.bas)); c.lineTo(X(200 - nez.demi), Y(nez.bas)); c.closePath();
+  }
+  function rgba(hex, a) { var n = parseInt(hex.slice(1), 16); return "rgba(" + (n >> 16 & 255) + "," + (n >> 8 & 255) + "," + (n & 255) + "," + a + ")"; }
+
+  function Masque(canvas) {
+    this.c = canvas; this.ctx = canvas.getContext("2d"); this.W = 0; this.H = 0; this.s = 1; this.ox = 0; this.oy = 0; this.couche = null; this.visible = true;
+  }
+  Masque.prototype.X = function (x) { return this.ox + x * this.s; };
+  Masque.prototype.Y = function (y) { return this.oy + y * this.s; };
+  Masque.prototype.taille = function () {
+    var r = this.c.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.W = Math.max(1, Math.round(r.width * dpr)); this.H = Math.max(1, Math.round(r.height * dpr));
+    this.c.width = this.W; this.c.height = this.H;
+    this.s = Math.min(this.W / 400, this.H / 500) * 0.92; this.ox = (this.W - 400 * this.s) / 2; this.oy = (this.H - 500 * this.s) / 2;
+    this.construire(); this.dessiner(performance.now());
+  };
+  Masque.prototype.corps = function (c) {
+    var X = this.X.bind(this), Y = this.Y.bind(this), s = this.s;
+    c.beginPath();
+    c.ellipse(X(visage.cx), Y(visage.cy), visage.rx * s, visage.ry * s, 0, 0, Math.PI * 2);
+    c.moveTo(X(200 - cou.a + 12), Y(cou.haut));
+    c.quadraticCurveTo(X(200), Y(cou.haut + 14), X(200 + cou.a - 12), Y(cou.haut));
+    c.quadraticCurveTo(X(200 + cou.a), Y(cou.haut), X(200 + cou.a + 2), Y(cou.haut + 12));
+    c.lineTo(X(200 + cou.b), Y(cou.bas - 12));
+    c.quadraticCurveTo(X(200 + cou.b), Y(cou.bas), X(200 + cou.b - 14), Y(cou.bas));
+    c.quadraticCurveTo(X(200), Y(cou.bas + 12), X(200 - cou.b + 14), Y(cou.bas));
+    c.quadraticCurveTo(X(200 - cou.b), Y(cou.bas), X(200 - cou.b), Y(cou.bas - 12));
+    c.lineTo(X(200 - cou.a - 2), Y(cou.haut + 12));
+    c.quadraticCurveTo(X(200 - cou.a), Y(cou.haut), X(200 - cou.a + 12), Y(cou.haut));
+    c.closePath();
+  };
+  Masque.prototype.construire = function () {
+    if (!this.W) return;
+    var k = document.createElement("canvas"); k.width = this.W; k.height = this.H;
+    var c = k.getContext("2d"), s = this.s, X = this.X.bind(this), Y = this.Y.bind(this);
+    // câble et télécommande-batterie
+    c.strokeStyle = "rgba(255,255,255,0.32)"; c.lineWidth = 1.6 * s;
+    c.beginPath(); c.moveTo(X(312), Y(232)); c.bezierCurveTo(X(352), Y(270), X(330), Y(330), X(355), Y(388)); c.stroke();
+    c.beginPath(); c.roundRect ? c.roundRect(X(338), Y(388), 34 * s, 76 * s, 9 * s) : c.rect(X(338), Y(388), 34 * s, 76 * s);
+    c.fillStyle = "rgba(255,255,255,0.16)"; c.fill(); c.strokeStyle = "rgba(255,255,255,0.3)"; c.lineWidth = 1.1 * s; c.stroke();
+    // silicone blanc
+    this.corps(c);
+    c.fillStyle = "rgba(255,255,255,0.11)"; c.fill();
+    c.strokeStyle = "rgba(255,255,255,0.3)"; c.lineWidth = 1.3 * s; c.stroke();
+    // ouvertures : yeux (contour noir), nez, bouche
+    c.save(); c.globalCompositeOperation = "destination-out";
+    c.beginPath(); trou(c, X, Y, s); c.fill();
+    c.restore();
+    c.strokeStyle = "rgba(0,0,0,0.85)"; c.lineWidth = 5 * s;
+    yeux.forEach(function (e) { c.beginPath(); c.ellipse(X(e.cx), Y(e.cy), e.rx * s, e.ry * s, 0, 0, Math.PI * 2); c.stroke(); });
+    c.strokeStyle = "rgba(255,255,255,0.3)"; c.lineWidth = 1.1 * s;
+    c.beginPath(); trou(c, X, Y, s); c.stroke();
+    // LED
+    c.fillStyle = couleur; c.shadowColor = couleur; c.shadowBlur = 7 * s;
+    var pas = 12.5;
+    for (var row = 0, y = 38; y < 446; y += pas * 0.87, row++) {
+      for (var x = 70 + (row % 2 ? pas / 2 : 0); x < 332; x += pas) {
+        if (!(dansE(x, y, visage, -10) || dansCou(x, y, 8))) continue;
+        if (dansE(x, y, yeux[0], 8) || dansE(x, y, yeux[1], 8) || dansE(x, y, bouche, 7) || dansNez(x, y, 7)) continue;
+        c.beginPath(); c.arc(X(x), Y(y), 2.15 * s, 0, Math.PI * 2); c.fill();
+      }
+    }
+    c.shadowBlur = 0; c.fillStyle = couleur;
+    [408, 420, 432].forEach(function (yy) { c.beginPath(); c.arc(X(355), Y(yy), 2 * s, 0, Math.PI * 2); c.fill(); });
+    this.couche = k;
+  };
+  Masque.prototype.dessiner = function (t) {
+    if (!this.couche) return;
+    var c = this.ctx, s = this.s, p = calme ? 1 : 0.5 + 0.5 * Math.sin(t / 1100);
+    c.clearRect(0, 0, this.W, this.H);
+    var g = c.createRadialGradient(this.X(200), this.Y(230), 10 * s, this.X(200), this.Y(230), 260 * s);
+    g.addColorStop(0, rgba(couleur, 0.30 + 0.10 * p)); g.addColorStop(1, rgba(couleur, 0));
+    c.fillStyle = g; c.fillRect(0, 0, this.W, this.H);
+    c.globalAlpha = 0.8 + 0.2 * p; c.drawImage(this.couche, 0, 0); c.globalAlpha = 1;
+  };
+
+  var masques = Array.prototype.map.call(document.querySelectorAll("[data-mask]"), function (cv) { return new Masque(cv); });
+  masques.forEach(function (m) {
+    if ("ResizeObserver" in window) new ResizeObserver(function () { m.taille(); }).observe(m.c);
+    m.taille();
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { m.visible = e[0].isIntersecting; }).observe(m.c);
+  });
+  function boucle(t) { masques.forEach(function (m) { if (m.visible) m.dessiner(t); }); requestAnimationFrame(boucle); }
+  if (!calme) requestAnimationFrame(boucle);
+
+  var zone = document.querySelector("[data-swatches]"), nom = document.querySelector("[data-color-name]"), lab = document.querySelector("[data-lab]");
+  COULEURS.forEach(function (cc, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "sw"; b.style.setProperty("--c", cc[1]);
+    b.setAttribute("aria-label", cc[0]); b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    b.addEventListener("click", function () {
+      Array.prototype.forEach.call(zone.children, function (x) { x.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true"); couleur = cc[1]; nom.textContent = cc[0];
+      if (window.lueurSuivi && !window.lueurCouleurVue) { window.lueurCouleurVue = true; window.lueurSuivi("color"); }
+      lab.setAttribute("aria-label", "Illustration du masque allumé en " + cc[0].toLowerCase());
+      masques.forEach(function (m) { m.construire(); m.dessiner(performance.now()); });
+    });
+    zone.appendChild(b);
+  });
+})();
+</script>
+
+</body>
+</html>

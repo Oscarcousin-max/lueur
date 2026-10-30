@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%23C8102E%27/%3E%3C/svg%3E">
+<title>Livraison et retours · Lueur</title>
+<meta name="description" content="Livraison et retours de la boutique Lueur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* Lueur — même esprit que Méconnaissable : blanc, gris clair, noir. Le rouge de la LED en seule touche de couleur. */
+:root {
+  --paper: #FFFFFF;
+  --mist: #F2F2F0;
+  --line: #DCDCD8;
+  --ink: #141414;
+  --graphite: #5F5F5C;
+  --led: #C8102E;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --radius: 22px;
+  --max: 1200px;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font); font-size: 1.0625rem; line-height: 1.5; font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, p { margin: 0; }
+[hidden] { display: none !important; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--paper); padding: 8px 12px; z-index: 60; }
+.skip:focus { left: 8px; }
+.small { font-size: 0.875rem; color: var(--graphite); }
+.center { text-align: center; }
+
+.notice-bar { margin: 0; background: var(--ink); color: var(--paper); text-align: center; padding-block: 9px; font-size: 0.875rem; }
+
+/* En-tête */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--paper); }
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-block: 14px;
+  background: rgba(255, 255, 255, 0.86); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px);
+  border-bottom: 1px solid rgba(20, 20, 20, 0.06);
+}
+.logo { font-weight: 800; font-stretch: 75%; font-size: 1.45rem; letter-spacing: -0.01em; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.logo i { width: 9px; height: 9px; border-radius: 50%; background: var(--led); box-shadow: 0 0 10px 2px rgba(200, 16, 46, .45); }
+.back { font-size: 0.95rem; font-weight: 600; text-decoration: none; color: var(--graphite); }
+.back:hover { color: var(--ink); }
+
+/* Boutons */
+.btn {
+  font: inherit; font-weight: 600; font-size: 1.05rem; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+  background: var(--ink); color: var(--paper); border: 0; border-radius: 999px;
+  padding: 0 30px; transition: background-color 0.2s, transform 0.15s;
+}
+.btn:hover { background: #000; }
+.btn:active { transform: scale(0.98); }
+.btn[disabled] { opacity: 0.5; cursor: wait; }
+.btn-small { min-height: 44px; padding: 0 20px; font-size: 0.95rem; white-space: nowrap; }
+.btn-block { width: 100%; }
+
+/* Pages de texte (légal, contact, merci) */
+.page { max-width: 760px; margin: 0 auto; padding-block: 36px 72px; }
+.page h1 { font-weight: 800; font-stretch: 72%; font-size: clamp(2.3rem, 7vw, 3.5rem); line-height: 1; letter-spacing: -0.015em; margin-bottom: 10px; text-wrap: balance; }
+.page .maj { font-size: 0.9rem; color: var(--graphite); margin-bottom: 28px; }
+.page h2 { font-size: 1.15rem; font-weight: 700; margin: 30px 0 8px; }
+.page p, .page li { max-width: 65ch; }
+.page p { margin-bottom: 12px; }
+.page ul, .page ol { padding-left: 1.2rem; margin: 0 0 12px; display: grid; gap: 6px; }
+.page a { color: var(--ink); }
+.a-remplir { background: #FFF1B8; padding: 0 4px; border-radius: 4px; }
+.paper { background: var(--mist); border-radius: var(--radius); padding: 22px 24px; margin: 18px 0; }
+.paper p:last-child { margin-bottom: 0; }
+.form { display: grid; gap: 16px; max-width: 560px; }
+.form label { display: grid; gap: 6px; font-weight: 600; font-size: 0.95rem; }
+.form input, .form textarea { font: inherit; padding: 13px 14px; min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); width: 100%; }
+.form textarea { min-height: 150px; resize: vertical; }
+.form input:focus, .form textarea:focus { border-color: var(--ink); outline: none; }
+.form .btn { justify-self: start; }
+.hp { position: absolute; left: -5000px; }
+
+/* Pied de page */
+.site-footer { border-top: 1px solid var(--line); margin-top: 24px; }
+.footer-inner { max-width: var(--max); margin: 0 auto; padding-block: 36px 40px; color: var(--graphite); font-size: 0.9rem; }
+.footer-brand { color: var(--ink); font-weight: 800; font-stretch: 75%; font-size: 1.25rem; margin-bottom: 4px; }
+.footer-links { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 10px; }
+.footer-links a { text-decoration: none; }
+.footer-links a:hover { color: var(--ink); text-decoration: underline; }
+.footer-small { font-size: 0.8rem; margin: 0; }
+@media (min-width: 860px) {
+  .footer-links { grid-auto-flow: column; justify-content: start; gap: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
+</style>
+</head>
+<body>
+<header class="site-header gut">
+  <a class="logo" href="index.html" aria-label="Lueur, accueil"><i aria-hidden="true"></i>Lueur</a>
+  <a class="back" href="index.html">← Retour à la boutique</a>
+</header>
+<main class="page gut">
+<h1>Livraison et retours</h1>
+<p class="maj">Simple et sans surprise</p>
+
+<h2>Livraison</h2>
+<ul>
+  <li>Offerte partout en France métropolitaine.</li>
+  <li>Expédiée depuis un entrepôt en France.</li>
+  <li>Délai : <span class="a-remplir">[ex. 3 à 7 jours ouvrés]</span> après votre commande.</li>
+  <li>Vous recevez un numéro de suivi par e-mail dès l'expédition.</li>
+</ul>
+<div class="paper"><p><strong>Pour Noël :</strong> commandez avant le <span class="a-remplir">[15 décembre]</span> pour recevoir votre colis avant le 25.</p></div>
+
+<h2>Retours : 30 jours</h2>
+<p>Le masque ne vous convient pas ? Vous avez 30 jours après réception pour changer d'avis.</p>
+<ol>
+  <li>Écrivez-nous à <span class="a-remplir">[E-MAIL]</span> ou via la page <a href="contact.html">Contact</a>, avec votre numéro de commande.</li>
+  <li>Nous vous envoyons l'adresse de retour.</li>
+  <li>Renvoyez le masque complet, dans son emballage, sous 14 jours.</li>
+  <li>Nous vous remboursons sous 14 jours maximum, sur votre moyen de paiement.</li>
+</ol>
+<p>Frais de retour : <span class="a-remplir">[à votre charge / offerts — à choisir]</span>.</p>
+
+<h2>Produit abîmé ou qui ne fonctionne pas</h2>
+<p>Écrivez-nous avec une photo ou une courte vidéo. Nous vous proposons un remplacement ou un remboursement, sans frais pour vous, au titre de la garantie légale de conformité de 2 ans.</p>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner gut">
+    <p class="footer-brand">Lueur</p>
+    <p>Le soin qui s'allume, le soir, chez vous.</p>
+    <nav aria-label="Informations">
+      <ul class="footer-links">
+        <li><a href="livraison-retours.html">Livraison et retours</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cgv.html">Conditions générales de vente</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="confidentialite.html">Confidentialité</a></li>
+      </ul>
+    </nav>
+    <p class="footer-small">Paiement sécurisé par Stripe.</p>
+  </div>
+</footer>
+
+</body>
+</html>
