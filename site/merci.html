@@ -9,9 +9,8 @@
 <title>Merci · Lueur</title>
 <meta name="description" content="Merci de la boutique Lueur.">
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Archivo";src:url(/fonts/archivo.woff2) format("woff2-variations"),url(/fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}</style>
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 /* Lueur — même esprit que Méconnaissable : blanc, gris clair, noir. Le rouge de la LED en seule touche de couleur. */
@@ -158,5 +157,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     body: JSON.stringify({ event: "purchase", source: src, campaign: camp, page: location.pathname, mobile: window.matchMedia("(max-width: 860px)").matches }) }).catch(function () {});
 })();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

@@ -8,9 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%23C8102E%27/%3E%3C/svg%3E">
 <title>Contact · Lueur</title>
 <meta name="description" content="Contact de la boutique Lueur.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Archivo";src:url(/fonts/archivo.woff2) format("woff2-variations"),url(/fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}</style>
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 /* Lueur — même esprit que Méconnaissable : blanc, gris clair, noir. Le rouge de la LED en seule touche de couleur. */
@@ -118,15 +117,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 <p class="maj">Réponse sous 48 heures ouvrées</p>
 <p>Une question sur le masque, une commande ou un retour : écrivez-nous ici. Pensez à indiquer votre numéro de commande si vous en avez un.</p>
 
-<form class="form" name="contact" method="POST" action="message-envoye.html" data-netlify="true" netlify-honeypot="champ-robot" id="form-contact">
-  <input type="hidden" name="form-name" value="contact">
-  <p class="hp"><label>Ne pas remplir <input name="champ-robot" id="champ-robot" tabindex="-1" autocomplete="off"></label></p>
+<form class="form" name="contact" id="form-contact">
   <label for="nom">Votre nom<input id="nom" name="nom" type="text" autocomplete="name" required></label>
   <label for="email">Votre e-mail<input id="email" name="email" type="email" autocomplete="email" required></label>
   <label for="commande">Numéro de commande (si vous en avez un)<input id="commande" name="commande" type="text"></label>
   <label for="message">Votre message<textarea id="message" name="message" required></textarea></label>
   <button class="btn" type="submit">Envoyer</button>
-  <p class="small" id="note-apercu" hidden>Aperçu : le formulaire fonctionnera une fois le site en ligne sur Netlify.</p>
+  <p class="small" id="note-apercu" role="status" hidden>Votre messagerie s'ouvre avec le message déjà rempli : il ne reste qu'à l'envoyer.</p>
 </form>
 
 <p class="small" style="margin-top:28px">Vous pouvez aussi nous écrire directement : <a href="mailto:masque.lueur@gmail.com">masque.lueur@gmail.com</a></p>
@@ -148,10 +145,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   </div>
 </footer>
 <script>
-// Dans l'aperçu (page affichée dans un cadre), le formulaire ne peut pas être envoyé.
+// Le message s'ouvre dans la messagerie du client, déjà rempli, adressé à la boutique.
 document.getElementById("form-contact").addEventListener("submit", function(e){
-  if (window.self !== window.top) { e.preventDefault(); document.getElementById("note-apercu").hidden = false; }
+  e.preventDefault();
+  var v = function(id){ return (document.getElementById(id).value || "").trim(); };
+  var corps = v("message") + "\n\n— " + v("nom") + " (" + v("email") + ")" + (v("commande") ? "\nCommande : " + v("commande") : "");
+  location.href = "mailto:masque.lueur@gmail.com?subject=" + encodeURIComponent("Contact Lueur" + (v("commande") ? " — commande " + v("commande") : "")) + "&body=" + encodeURIComponent(corps);
+  document.getElementById("note-apercu").hidden = false;
 });
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

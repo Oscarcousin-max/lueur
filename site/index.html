@@ -11,9 +11,9 @@
 <meta property="og:title" content="Lueur — Le soin qui s'allume.">
 <meta property="og:description" content="Masque LED souple, visage et cou. Expédié depuis la France, livraison offerte.">
 <meta property="og:type" content="product">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Archivo";src:url(/fonts/archivo.woff2) format("woff2-variations"),url(/fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}</style>
+<link rel="preload" href="images/lueur-face.webp" as="image" fetchpriority="high">
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 /* Lueur — même esprit que Méconnaissable : blanc, gris clair, noir. Le rouge de la LED en seule touche de couleur. */
@@ -384,7 +384,7 @@ main { overflow-x: clip; }
       <li>Ne pas utiliser sous la douche ni dans le bain. Ne pas utiliser pendant la recharge.</li>
       <li>Tenir hors de portée des enfants. Suivez toujours la notice.</li>
     </ul>
-    <p class="fine">Fabricant et personne responsable dans l'Union européenne : indiqués sur l'emballage et communiqués sur simple demande à <a href="mailto:masque.lueur@gmail.com">masque.lueur@gmail.com</a>. Vendu par Michael Cousin, entrepreneur individuel, 9 rue Sauvageon, 33300 Bordeaux.</p>
+    <p class="fine">Fabricant et personne responsable dans l'Union européenne : indiqués sur l'emballage et communiqués sur simple demande à <a href="mailto:masque.lueur@gmail.com">masque.lueur@gmail.com</a>. Vendu par Michaël Cousin, entrepreneur individuel (EI), RCS Bordeaux 132 372 244, 9 rue Sauvageon, 33300 Bordeaux.</p>
   </section>
 
   <section class="closing gut" aria-label="Commander">
@@ -433,9 +433,8 @@ main { overflow-x: clip; }
       <div data-wait hidden>
         <p class="wait-title">Les commandes ouvrent très bientôt.</p>
         <p class="small">Laissez votre e-mail : on vous prévient le jour de l'ouverture, une seule fois.</p>
-        <form class="wait-form" name="liste-attente" method="POST" data-netlify="true" netlify-honeypot="champ-robot" data-wait-form>
-          <input type="hidden" name="form-name" value="liste-attente">
-          <p class="hp"><label>Ne pas remplir <input name="champ-robot" tabindex="-1" autocomplete="off"></label></p>
+        <form class="wait-form" name="liste-attente" data-wait-form>
+                    <p class="hp"><label>Ne pas remplir <input name="champ-robot" tabindex="-1" autocomplete="off"></label></p>
           <label class="wait-label" for="email-attente">Votre e-mail</label>
           <input id="email-attente" name="email" type="email" autocomplete="email" required placeholder="prenom@exemple.fr">
           <button class="btn btn-block" type="submit">Me prévenir</button>
@@ -460,7 +459,7 @@ main { overflow-x: clip; }
         <li><a href="confidentialite.html">Confidentialité</a></li>
       </ul>
     </nav>
-    <p class="footer-small">Paiement sécurisé par Stripe. © 2026 Michael Cousin</p>
+    <p class="footer-small">Paiement sécurisé par Stripe. © 2026 Michaël Cousin EI</p>
   </div>
 </footer>
 
@@ -478,19 +477,19 @@ window.SHOP = {
   lienPaiementNormal: "https://buy.stripe.com/test_3cIdR90wpeTS4qeaaS5EY00",
   lienPaiementNoel:   "https://buy.stripe.com/test_fZu9AT2Ex7rq1e26YG5EY01",
   photos: [                                    // tes photos, dans le dossier images/
-    "images/lueur-face.jpg",                   // 0 : de face, masque allumé en rouge (grande photo du haut)
-    "images/lueur-detail.jpg",                 // 1 : gros plan sur le silicone et les LED
-    "images/lueur-cou.jpg",                    // 2 : de profil, on voit le cou couvert
-    "images/lueur-canape.jpg",                 // 3 : le soir, allongée sur le canapé
-    "images/lueur-cadeau.jpg",                 // 4 : la boîte cadeau sous le sapin
-    "images/lueur-trois-quarts.jpg"            // 5 : de trois quarts (photo ronde du bas)
+    "images/lueur-face.webp",                   // 0 : de face, masque allumé en rouge (grande photo du haut)
+    "images/lueur-detail.webp",                 // 1 : gros plan sur le silicone et les LED
+    "images/lueur-cou.webp",                    // 2 : de profil, on voit le cou couvert
+    "images/lueur-canape.webp",                 // 3 : le soir, allongée sur le canapé
+    "images/lueur-cadeau.webp",                 // 4 : la boîte cadeau sous le sapin
+    "images/lueur-trois-quarts.webp"            // 5 : de trois quarts (photo ronde du bas)
   ]
 };
 /* ============================================================== */
 
 /* ---- Statistiques internes : visites, provenance, clics (sans cookie, anonyme) ---- */
 (function () {
-  var actif = location.protocol.indexOf("http") === 0 && window.self === window.top && !/^(localhost|127\.)/.test(location.hostname);
+  var actif = /netlify\.app$/.test(location.hostname) && location.protocol.indexOf("http") === 0 && window.self === window.top && !/^(localhost|127\.)/.test(location.hostname);
   function lire(k) { try { return sessionStorage.getItem(k) || ""; } catch (e) { return ""; } }
   function ecrire(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
   var q = new URLSearchParams(location.search);
@@ -565,6 +564,7 @@ window.SHOP = {
     var img = new Image();
     img.alt = "Masque LED Lueur, photo " + (i + 1);
     img.decoding = "async";
+    if (i === 0) { img.fetchPriority = "high"; } else { img.loading = "lazy"; }
     img.onload = function () { slot.appendChild(img); };
     img.src = src;
   });
@@ -628,21 +628,15 @@ window.SHOP = {
     location.href = lien;
   });
 
-  // ---- Liste d'attente (formulaire Netlify) ----
+  // ---- Liste d'attente : ouvre l'e-mail du visiteur, déjà rempli, vers la boutique ----
   var wform = $("[data-wait-form]"), wmsg = $("[data-wait-msg]");
   wform.addEventListener("submit", function (e) {
     e.preventDefault();
-    if (window.self !== window.top || location.protocol.indexOf("http") !== 0) {
-      wmsg.textContent = "Aperçu : l'inscription fonctionnera une fois le site en ligne."; wmsg.hidden = false; return;
-    }
-    var btn = wform.querySelector("button"); btn.disabled = true; btn.textContent = "Envoi…";
-    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(new FormData(wform)).toString() })
-      .then(function (r) {
-        if (!r.ok) throw new Error();
-        suivi("waitlist");
-        wform.hidden = true; wmsg.textContent = "C'est noté : vous serez prévenu(e) le jour de l'ouverture."; wmsg.hidden = false;
-      })
-      .catch(function () { btn.disabled = false; btn.textContent = "Me prévenir"; wmsg.textContent = "L'envoi n'a pas marché. Vérifiez votre connexion et réessayez."; wmsg.hidden = false; });
+    var mail = (wform.querySelector("[name=email]").value || "").trim();
+    var corps = "Bonjour,\n\nPrévenez-moi à l'ouverture des commandes du masque Lueur.\n\nMon e-mail : " + mail + "\n";
+    location.href = "mailto:masque.lueur@gmail.com?subject=" + encodeURIComponent("Liste d'attente Lueur") + "&body=" + encodeURIComponent(corps);
+    suivi("waitlist");
+    wmsg.textContent = "Votre messagerie s'ouvre : il ne reste qu'à envoyer l'e-mail. Sinon, écrivez à masque.lueur@gmail.com."; wmsg.hidden = false;
   });
   render();
 })();
@@ -766,5 +760,6 @@ window.SHOP = {
 })();
 </script>
 
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

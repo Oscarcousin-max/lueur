@@ -8,9 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%23C8102E%27/%3E%3C/svg%3E">
 <title>Confidentialité · Lueur</title>
 <meta name="description" content="Confidentialité de la boutique Lueur.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Archivo";src:url(/fonts/archivo.woff2) format("woff2-variations"),url(/fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}</style>
 <style>
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 /* Lueur — même esprit que Méconnaissable : blanc, gris clair, noir. Le rouge de la LED en seule touche de couleur. */
@@ -115,25 +114,26 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 </header>
 <main class="page gut">
 <h1>Politique de confidentialité</h1>
-<p class="maj">Mise à jour : 2 novembre 2026</p>
+<p class="maj">Mise à jour : 9 novembre 2026</p>
 
 <h2>Qui est responsable de vos données</h2>
-<p>Michael Cousin, éditeur de Lueur, 9 rue Sauvageon, 33300 Bordeaux, <a href="mailto:masque.lueur@gmail.com">masque.lueur@gmail.com</a>.</p>
+<p>Michaël Cousin EI, éditeur de Lueur, 9 rue Sauvageon, 33300 Bordeaux, <a href="mailto:masque.lueur@gmail.com">masque.lueur@gmail.com</a>.</p>
 
 <h2>Ce que nous collectons et pourquoi</h2>
 <ul>
   <li><strong>Pour traiter votre commande</strong> : nom, adresse de livraison, e-mail, téléphone. Base légale : le contrat de vente.</li>
   <li><strong>Pour répondre à vos messages</strong> : nom, e-mail et contenu du message envoyé via la page Contact. Base légale : votre demande.</li>
   <li><strong>Paiement</strong> : vos données de carte sont saisies directement chez Stripe. Nous ne les voyons jamais.</li>
-  <li><strong>Liste d'attente</strong> : votre e-mail, si vous demandez à être prévenu(e) de l'ouverture. Il sert uniquement à vous envoyer ce message, puis il est supprimé dans les 3 mois. Base légale : votre demande.</li>
-  <li><strong>Mesure d'audience</strong> : des chiffres anonymes sur la visite du site (pages vues, site d'où vous venez, pays, téléphone ou ordinateur, clics sur le panier). Aucun cookie, aucune adresse IP conservée, aucun profil. Ces chiffres servent seulement à améliorer la boutique.</li>
+  <li><strong>Liste d'attente</strong> : votre e-mail, envoyé depuis votre propre messagerie, si vous demandez à être prévenu(e) de l'ouverture. Il sert uniquement à vous envoyer ce message, puis il est supprimé dans les 3 mois. Base légale : votre demande.</li>
+  <li><strong>Mesure d'audience</strong> : des chiffres anonymes sur la visite du site (pages vues, site d'où vous venez, pays, type d'appareil), fournis par l'outil de statistiques de notre hébergeur Vercel. Aucun cookie, aucun profil, aucune donnée revendue. Ces chiffres servent seulement à améliorer la boutique.</li>
 </ul>
 
 <h2>Qui reçoit vos données</h2>
 <ul>
   <li>Stripe, pour le paiement.</li>
   <li>Notre fournisseur et son transporteur, pour préparer et livrer votre colis (nom, adresse, téléphone). Notre fournisseur passe par la plateforme AliExpress : vos données de livraison peuvent donc être traitées hors de l'Union européenne.</li>
-  <li>Netlify, qui héberge le site et reçoit les messages du formulaire de contact.</li>
+  <li>Vercel, qui héberge le site et produit les statistiques de visite anonymes.</li>
+  <li>Google (Gmail), qui héberge notre boîte e-mail et reçoit donc vos messages.</li>
 </ul>
 <p>Certains de ces prestataires sont situés hors de l'Union européenne. Les transferts sont encadrés par les garanties prévues par le RGPD (clauses contractuelles types ou cadre de protection des données UE-États-Unis).</p>
 
@@ -144,7 +144,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 <p>Vous pouvez demander à accéder à vos données, les corriger, les supprimer, en limiter l'usage ou vous opposer à leur traitement, en écrivant à <a href="mailto:masque.lueur@gmail.com">masque.lueur@gmail.com</a>. Vous pouvez aussi saisir la CNIL (cnil.fr).</p>
 
 <h2>Cookies</h2>
-<p>Le site n'utilise aucun cookie. Notre mesure d'audience interne garde seulement, le temps de votre visite, une petite note dans votre navigateur pour ne pas compter deux fois la même visite ; elle s'efface quand vous fermez l'onglet.</p>
+<p>Le site n'utilise aucun cookie. La mesure d'audience fonctionne sans cookie et ne permet pas de vous suivre d'un site à l'autre ; c'est pourquoi aucun bandeau ne vous est demandé.</p>
 </main>
 <footer class="site-footer">
   <div class="footer-inner gut">
@@ -163,5 +163,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   </div>
 </footer>
 
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

@@ -1,5 +1,12 @@
 # Boutique Lueur
 
+> **Mise à jour 9 nov. 2026 — la boutique tourne sur Vercel** (lueur-vert.vercel.app).
+> - Contact et liste d'attente : le message s'ouvre dans la messagerie du client et arrive sur masque.lueur@gmail.com (plus besoin de Netlify Forms).
+> - Statistiques : Vercel → projet **lueur** → onglet **Analytics** → **Enable** (gratuit, sans cookie). La page `/stats.html` ne marche que sur Netlify.
+> - Pages légales à jour avec l'immatriculation (RCS Bordeaux 132 372 244) et l'hébergeur Vercel.
+> - Photos en WebP et police hébergée sur le site : la page s'ouvre plus vite.
+> - Reste à faire : adhérer à un médiateur de la consommation, puis mettre son nom dans `cgv.html` (article 10).
+
 La boutique (dossier `site/`) et ses statistiques internes (dossier `netlify/functions/`).
 Tout est gratuit : Netlify héberge le site, compte les visites et garde la liste d'attente.
 
