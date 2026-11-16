@@ -22,6 +22,7 @@ export default async (req, context) => {
     campaign: corps.campaign,
     mobile: !!corps.mobile,
     pays: context?.geo?.country?.code,
+    secondes: corps.secondes,
   }, maintenant);
   await store.setJSON(cle, maj);
   return new Response(null, { status: 204 });

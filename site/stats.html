@@ -8,7 +8,8 @@
 <title>Statistiques · Lueur</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2710%27 fill=%27%23C8102E%27/%3E%3C/svg%3E">
 <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<style>@font-face{font-family:"Archivo";src:url(/fonts/archivo.woff2) format("woff2-variations"),url(/fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}</style>
+<style>@font-face{font-family:"Archivo";src:url(/fonts/archivo.woff2) format("woff2-variations"),url(/fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}.duree-moy { font-size: 1.6rem; font-weight: 700; margin: 4px 0 12px; }
+</style>
 <style>
 /* Tableau de bord interne : même univers que la boutique, lu d'un coup d'œil sur téléphone. */
 :root {
@@ -122,6 +123,13 @@ th { font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color
         <div class="tbl"><table><thead><tr><th>Source</th><th>Visites</th><th>Paniers</th><th>Payer</th><th>Achats</th><th>Taux d'achat</th></tr></thead><tbody data-sources></tbody></table></div>
       </div>
 
+      <div class="card">
+        <h2>Temps passé sur la boutique</h2>
+        <p class="hint">Temps où la page est vraiment ouverte à l'écran, mesuré quand le visiteur s'en va.</p>
+        <p class="duree-moy" data-duree-moy>–</p>
+        <ul class="liste" data-duree></ul>
+      </div>
+
       <div class="grid3">
         <div class="card"><h2>Appareils</h2><ul class="liste" data-appareils></ul></div>
         <div class="card"><h2>Pays</h2><ul class="liste" data-pays></ul></div>
@@ -166,7 +174,7 @@ th { font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color
   }
 
   function somme(jours) {
-    var t = { ev: {}, sources: {}, campagnes: {}, pays: {}, appareils: {}, heures: Array(24).fill(0) };
+    var t = { ev: {}, sources: {}, campagnes: {}, pays: {}, appareils: {}, heures: Array(24).fill(0), duree: { total: 0, n: 0, tranches: {} } };
     jours.forEach(function (j) {
       Object.keys(j.evenements || {}).forEach(function (k) { t.ev[k] = (t.ev[k] || 0) + j.evenements[k]; });
       ["sources", "campagnes"].forEach(function (g) {
@@ -177,6 +185,10 @@ th { font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color
       });
       ["pays", "appareils"].forEach(function (g) { Object.keys(j[g] || {}).forEach(function (k) { t[g][k] = (t[g][k] || 0) + j[g][k]; }); });
       (j.heures || []).forEach(function (n, h) { t.heures[h] += n || 0; });
+      if (j.duree) {
+        t.duree.total += j.duree.total || 0; t.duree.n += j.duree.n || 0;
+        Object.keys(j.duree.tranches || {}).forEach(function (k) { t.duree.tranches[k] = (t.duree.tranches[k] || 0) + j.duree.tranches[k]; });
+      }
     });
     return t;
   }
@@ -254,6 +266,14 @@ th { font-size: 0.78rem; letter-spacing: .06em; text-transform: uppercase; color
       if (!cles.length) { ul.appendChild(el("li", { class: "vide" }, "Rien pour l'instant.")); return; }
       cles.forEach(function (k) { var li = el("li"); li.appendChild(el("span", null, k)); li.appendChild(el("span", null, nombre(obj[k]) + (suffixe || ""))); ul.appendChild(li); });
     }
+    // Temps passé
+    var moy = t.duree.n ? Math.round(t.duree.total / t.duree.n) : 0;
+    $("[data-duree-moy]").textContent = t.duree.n ? "En moyenne " + (moy >= 60 ? Math.floor(moy / 60) + " min " + String(moy % 60).padStart(2, "0") + " s" : moy + " s") + " par visite" : "Pas encore de mesure sur la période.";
+    var ud = $("[data-duree]"); ud.replaceChildren();
+    ["moins de 10 s", "10 à 30 s", "30 s à 1 min", "1 à 3 min", "plus de 3 min"].forEach(function (k) {
+      if (!t.duree.n) return;
+      var li = el("li"); li.appendChild(el("span", null, k)); li.appendChild(el("span", null, nombre(t.duree.tranches[k] || 0) + " · " + pct(t.duree.tranches[k] || 0, t.duree.n))); ud.appendChild(li);
+    });
     liste("[data-appareils]", t.appareils, " visites");
     liste("[data-pays]", t.pays, " visites");
     var camp = {}; Object.keys(t.campagnes).forEach(function (c) { camp[c] = t.campagnes[c].view || 0; });

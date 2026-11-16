@@ -1,5 +1,10 @@
 # Boutique Lueur
 
+> **Mise à jour 16 nov. 2026 — la boutique principale est sur Netlify** : https://lueur-masque.netlify.app
+> - L'ancienne adresse Vercel (lueur-vert.vercel.app) renvoie automatiquement vers Netlify, pour que les statistiques comptent toutes les visites.
+> - Tableau de bord : https://lueur-masque.netlify.app/stats.html (avec ton code `STATS_CODE`). Nouveau : le **temps passé** sur la boutique.
+> - Les liens Stripe de **test** ne servent plus au paiement : tant que les vrais liens (`https://buy.stripe.com/...` sans `test_`) ne sont pas collés, le panier propose la liste d'attente.
+
 > **Mise à jour 9 nov. 2026 — la boutique tourne sur Vercel** (lueur-vert.vercel.app).
 > - Contact et liste d'attente : le message s'ouvre dans la messagerie du client et arrive sur masque.lueur@gmail.com (plus besoin de Netlify Forms).
 > - Statistiques : Vercel → projet **lueur** → onglet **Analytics** → **Enable** (gratuit, sans cookie). La page `/stats.html` ne marche que sur Netlify.

@@ -50,5 +50,12 @@
       ]
     }
   ],
-  "cleanUrls": false
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/:chemin*",
+      "destination": "https://lueur-masque.netlify.app/:chemin*",
+      "permanent": false
+    }
+  ]
 }

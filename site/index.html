@@ -514,6 +514,26 @@ window.SHOP = {
   };
   var cle = "lueur_vu_" + location.pathname;
   if (!lire(cle)) { ecrire(cle, "1"); window.lueurSuivi("view"); }
+
+  // Temps passé sur la page : seulement le temps où la page est vraiment à l'écran, envoyé une fois en partant
+  var visible = 0, depuis = document.visibilityState === "visible" ? Date.now() : 0, envoye = false;
+  function pause() { if (depuis) { visible += Date.now() - depuis; depuis = 0; } }
+  function envoyer() {
+    pause();
+    if (!actif || envoye) return;
+    var secondes = Math.round(visible / 1000);
+    if (secondes < 1) return;
+    envoye = true;
+    var corps = JSON.stringify({ event: "duree", secondes: secondes, source: lire("lueur_source") || "direct" });
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon("/api/track", new Blob([corps], { type: "application/json" }))) return;
+    } catch (e) {}
+    try { fetch("/api/track", { method: "POST", keepalive: true, headers: { "Content-Type": "application/json" }, body: corps }).catch(function () {}); } catch (e) {}
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") { if (!depuis) depuis = Date.now(); } else { envoyer(); }
+  });
+  window.addEventListener("pagehide", envoyer);
 })();
 
 (function () {
@@ -527,7 +547,7 @@ window.SHOP = {
   var offre = apercu || (now >= new Date(S.debutOffre) && now <= new Date(S.finOffre));
   var prix = offre ? S.prixNoel : S.prixNormal;
   var lien = offre ? S.lienPaiementNoel : S.lienPaiementNormal;
-  var lienPret = /^https:\/\//.test(lien);
+  var lienPret = /^https:\/\//.test(lien) && !/\/test_/.test(lien); // un lien Stripe de test ne permet pas de vraies commandes
   function euros(n) { return n.toLocaleString("fr-FR", { style: "currency", currency: "EUR", minimumFractionDigits: n % 1 ? 2 : 0 }); }
   function jour(d) { return d.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/Paris" }); }
 
