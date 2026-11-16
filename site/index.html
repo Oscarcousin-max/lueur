@@ -585,8 +585,11 @@ window.SHOP = {
     img.alt = "Masque LED Lueur, photo " + (i + 1);
     img.decoding = "async";
     if (i === 0) { img.fetchPriority = "high"; } else { img.loading = "lazy"; }
-    img.onload = function () { slot.appendChild(img); };
+    // L'image doit être dans la page tout de suite : une image « lazy » hors de la page ne se charge jamais.
+    img.onload = function () { var ph = slot.querySelector(".ph"); if (ph) ph.hidden = true; };
+    img.onerror = function () { img.remove(); };
     img.src = src;
+    slot.appendChild(img);
   });
 
   // ---- Barre d'achat mobile : visible quand le bouton principal n'est plus à l'écran ----
